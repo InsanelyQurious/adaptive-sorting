@@ -1,0 +1,102 @@
+[
+ {
+  "item": "1 backend starts",
+  "pass": true,
+  "detail": "backend ok, mujoco 3.14.0, device CPU"
+ },
+ {
+  "item": "2 frontend starts",
+  "pass": true,
+  "detail": "http://localhost:3001 serves the dashboard"
+ },
+ {
+  "item": "3 browser opens dashboard (headless Chrome, live data)",
+  "pass": true,
+  "detail": "headless Chrome: live frames=3, sim_live=True, train=COMPLETED, errors=[]"
+ },
+ {
+  "item": "4 MuJoCo loads the UR10e",
+  "pass": true,
+  "detail": "robot=UR10e"
+ },
+ {
+  "item": "5 scene contains robot, table, two bins, bracket, bolt, camera",
+  "pass": true,
+  "detail": "bodies ['robot_base', 'bin_a', 'bin_b', 'bracket', 'bolt'] + table_top + camera 'overhead' present"
+ },
+ {
+  "item": "6 simulation can reset",
+  "pass": true,
+  "detail": "POST /simulation/reset ok"
+ },
+ {
+  "item": "7 scene randomization works",
+  "pass": true,
+  "detail": "bracket {'x': 0.1959, 'y': -0.189, 'yaw': 1.5929} vs {'x': 0.108, 'y': 0.063, 'yaw': 0.3912}"
+ },
+ {
+  "item": "8 robot can move",
+  "pass": true,
+  "detail": "TCP moved 0.204 m in 16 steps"
+ },
+ {
+  "item": "9 objects physically interact with the gripper",
+  "pass": true,
+  "detail": "pads in contact (True, True), grasped True, physically lifted True"
+ },
+ {
+  "item": "10 training environment runs",
+  "pass": true,
+  "detail": "obs keys ['state', 'image'], reward -0.046"
+ },
+ {
+  "item": "11 RL training executes (trainer process / smoke run)",
+  "pass": true,
+  "detail": "trainer state=completed timesteps=301056 fps=499.82877595305297"
+ },
+ {
+  "item": "12 a checkpoint can be saved",
+  "pass": true,
+  "detail": "14 checkpoints, latest checkpoint_000301056"
+ },
+ {
+  "item": "13 a checkpoint can be loaded",
+  "pass": true,
+  "detail": "loaded checkpoint_000301056 (301056 steps)"
+ },
+ {
+  "item": "14 inference runs using the trained checkpoint",
+  "pass": true,
+  "detail": "policy calls 151, latency 1.549 ms, action [-0.014999999664723873, -0.026599999517202377, -0.11190000176429749]"
+ },
+ {
+  "item": "15 browser receives real-time simulation state (ws)",
+  "pass": true,
+  "detail": "frame 96684 b64 bytes, state keys 42"
+ },
+ {
+  "item": "16 browser receives real training metrics (ws)",
+  "pass": true,
+  "detail": "400 metric rows, last timesteps 301056"
+ },
+ {
+  "item": "17 dashboard charts update (metrics grow)",
+  "pass": true,
+  "detail": "1000 rows spanning 233472\u2192301056 timesteps (charts read these)"
+ },
+ {
+  "item": "18 evaluation mode runs randomized episodes",
+  "pass": true,
+  "detail": "2 randomized episodes: success 0.0, avg reward -11.3865, 3.5 s"
+ },
+ {
+  "item": "19 no fake training numbers displayed",
+  "pass": true,
+  "detail": "no hard-coded metric values in dashboard components; missing values render N/A"
+ },
+ {
+  "item": "20 README contains exact start commands",
+  "pass": true,
+  "detail": "README has backend/frontend/training/inference commands and URLs"
+ }
+]

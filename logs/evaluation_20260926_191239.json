@@ -1,0 +1,414 @@
+{
+  "status": "completed",
+  "checkpoint": "checkpoint_000400032",
+  "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+      3,
+      64,
+      64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+  },
+  "episodes_requested": 5,
+  "episodes_run": 5,
+  "successes": 0,
+  "success_rate": 0.0,
+  "grasp_rate": 1.0,
+  "placement_rate": 1.0,
+  "average_reward": -0.1251999999999999,
+  "average_length": 166.4,
+  "collisions_total": 329,
+  "episodes_with_collision": 4,
+  "control_effort_mean": 188.7994,
+  "control_effort_penalty_total": -9.417,
+  "collision_penalty_total": -329.0,
+  "parts_placed_total": 5,
+  "sim_seconds_total": 83.2,
+  "parts_per_minute": 3.61,
+  "false_picks": 0,
+  "unstable_episodes": 1,
+  "drops": 0,
+  "wrong_bin": 0,
+  "randomization_level": null,
+  "label": "cluttered_u_bracket",
+  "id": "scorecard_20260926_191148_20260926_191227_cluttered_u_bracket",
+  "fixed_poses": {
+    "bracket": {
+      "x": 0.2088,
+      "y": 0.4649,
+      "yaw": -0.15
+    },
+    "bolt": {
+      "x": 0.1804,
+      "y": -0.1803,
+      "yaw": 2.9379
+    }
+  },
+  "seed": 9500,
+  "duration_s": 11.1,
+  "finished_iso": "2026-09-26T19:12:39",
+  "episodes": [
+    {
+      "episode": 1,
+      "seed": 9501,
+      "success": false,
+      "placed_count": 1,
+      "reward": 54.66,
+      "length": 200,
+      "grasp_success": true,
+      "lift_success": true,
+      "placement_success": true,
+      "collisions": 12,
+      "dropped": false,
+      "wrong_bin": false,
+      "unstable": false,
+      "terminated": false,
+      "truncated": true,
+      "object_configuration": {
+        "object_poses": {
+          "bracket": {
+            "x": 0.2088,
+            "y": 0.4649,
+            "yaw": -0.15
+          },
+          "bolt": {
+            "x": 0.1804,
+            "y": -0.1803,
+            "yaw": 2.9379
+          }
+        },
+        "bin_offsets": {
+          "bin_a": [
+            0.0,
+            0.0
+          ],
+          "bin_b": [
+            0.0,
+            0.0
+          ]
+        },
+        "object_scales": {
+          "bracket": 1.0071,
+          "bolt": 1.0206
+        },
+        "frictions": {
+          "bracket": 0.7195,
+          "bolt": 0.9012
+        },
+        "state_noise_std": 0.005,
+        "image_noise_std": 2.0,
+        "light": {
+          "dir": [
+            -0.248,
+            0.289,
+            -0.925
+          ],
+          "gain": 0.83
+        },
+        "level": 1.0,
+        "bins_fixed": true
+      },
+      "mode": "evaluate",
+      "time": 1790464350.7569072,
+      "sim_seconds": 20.0,
+      "collision_steps": 12,
+      "control_effort": 138.705,
+      "collision_penalty_total": -12.0,
+      "control_effort_penalty_total": -1.387,
+      "false_pick": false
+    },
+    {
+      "episode": 2,
+      "seed": 9502,
+      "success": false,
+      "placed_count": 1,
+      "reward": -42.903,
+      "length": 200,
+      "grasp_success": true,
+      "lift_success": true,
+      "placement_success": true,
+      "collisions": 108,
+      "dropped": false,
+      "wrong_bin": false,
+      "unstable": false,
+      "terminated": false,
+      "truncated": true,
+      "object_configuration": {
+        "object_poses": {
+          "bracket": {
+            "x": 0.2088,
+            "y": 0.4649,
+            "yaw": -0.15
+          },
+          "bolt": {
+            "x": 0.1804,
+            "y": -0.1803,
+            "yaw": 2.9379
+          }
+        },
+        "bin_offsets": {
+          "bin_a": [
+            0.0,
+            0.0
+          ],
+          "bin_b": [
+            0.0,
+            0.0
+          ]
+        },
+        "object_scales": {
+          "bracket": 0.9922,
+          "bolt": 1.0766
+        },
+        "frictions": {
+          "bracket": 1.0875,
+          "bolt": 1.181
+        },
+        "state_noise_std": 0.005,
+        "image_noise_std": 2.0,
+        "light": {
+          "dir": [
+            -0.492,
+            0.277,
+            -0.825
+          ],
+          "gain": 1.232
+        },
+        "level": 1.0,
+        "bins_fixed": true
+      },
+      "mode": "evaluate",
+      "time": 1790464353.439334,
+      "sim_seconds": 20.0,
+      "collision_steps": 108,
+      "control_effort": 272.396,
+      "collision_penalty_total": -108.0,
+      "control_effort_penalty_total": -2.724,
+      "false_pick": false
+    },
+    {
+      "episode": 3,
+      "seed": 9503,
+      "success": false,
+      "placed_count": 1,
+      "reward": -68.19,
+      "length": 200,
+      "grasp_success": true,
+      "lift_success": true,
+      "placement_success": true,
+      "collisions": 132,
+      "dropped": false,
+      "wrong_bin": false,
+      "unstable": false,
+      "terminated": false,
+      "truncated": true,
+      "object_configuration": {
+        "object_poses": {
+          "bracket": {
+            "x": 0.2088,
+            "y": 0.4649,
+            "yaw": -0.15
+          },
+          "bolt": {
+            "x": 0.1804,
+            "y": -0.1803,
+            "yaw": 2.9379
+          }
+        },
+        "bin_offsets": {
+          "bin_a": [
+            0.0,
+            0.0
+          ],
+          "bin_b": [
+            0.0,
+            0.0
+          ]
+        },
+        "object_scales": {
+          "bracket": 0.924,
+          "bolt": 0.9916
+        },
+        "frictions": {
+          "bracket": 1.1475,
+          "bolt": 1.0923
+        },
+        "state_noise_std": 0.005,
+        "image_noise_std": 2.0,
+        "light": {
+          "dir": [
+            -0.235,
+            0.346,
+            -0.908
+          ],
+          "gain": 0.912
+        },
+        "level": 1.0,
+        "bins_fixed": true
+      },
+      "mode": "evaluate",
+      "time": 1790464355.9510753,
+      "sim_seconds": 20.0,
+      "collision_steps": 132,
+      "control_effort": 320.59,
+      "collision_penalty_total": -132.0,
+      "control_effort_penalty_total": -3.206,
+      "false_pick": false
+    },
+    {
+      "episode": 4,
+      "seed": 9504,
+      "success": false,
+      "placed_count": 1,
+      "reward": 64.655,
+      "length": 32,
+      "grasp_success": true,
+      "lift_success": true,
+      "placement_success": true,
+      "collisions": 0,
+      "dropped": false,
+      "wrong_bin": false,
+      "unstable": true,
+      "terminated": true,
+      "truncated": false,
+      "object_configuration": {
+        "object_poses": {
+          "bracket": {
+            "x": 0.2088,
+            "y": 0.4649,
+            "yaw": -0.15
+          },
+          "bolt": {
+            "x": 0.1804,
+            "y": -0.1803,
+            "yaw": 2.9379
+          }
+        },
+        "bin_offsets": {
+          "bin_a": [
+            0.0,
+            0.0
+          ],
+          "bin_b": [
+            0.0,
+            0.0
+          ]
+        },
+        "object_scales": {
+          "bracket": 0.9659,
+          "bolt": 1.0787
+        },
+        "frictions": {
+          "bracket": 1.031,
+          "bolt": 0.8968
+        },
+        "state_noise_std": 0.005,
+        "image_noise_std": 2.0,
+        "light": {
+          "dir": [
+            -0.33,
+            0.184,
+            -0.926
+          ],
+          "gain": 1.069
+        },
+        "level": 1.0,
+        "bins_fixed": true
+      },
+      "mode": "evaluate",
+      "time": 1790464356.3748105,
+      "sim_seconds": 3.2,
+      "collision_steps": 0,
+      "control_effort": 45.324,
+      "collision_penalty_total": 0.0,
+      "control_effort_penalty_total": -0.43,
+      "false_pick": false
+    },
+    {
+      "episode": 5,
+      "seed": 9505,
+      "success": false,
+      "placed_count": 1,
+      "reward": -8.848,
+      "length": 200,
+      "grasp_success": true,
+      "lift_success": true,
+      "placement_success": true,
+      "collisions": 77,
+      "dropped": false,
+      "wrong_bin": false,
+      "unstable": false,
+      "terminated": false,
+      "truncated": true,
+      "object_configuration": {
+        "object_poses": {
+          "bracket": {
+            "x": 0.2088,
+            "y": 0.4649,
+            "yaw": -0.15
+          },
+          "bolt": {
+            "x": 0.1804,
+            "y": -0.1803,
+            "yaw": 2.9379
+          }
+        },
+        "bin_offsets": {
+          "bin_a": [
+            0.0,
+            0.0
+          ],
+          "bin_b": [
+            0.0,
+            0.0
+          ]
+        },
+        "object_scales": {
+          "bracket": 0.9334,
+          "bolt": 0.9602
+        },
+        "frictions": {
+          "bracket": 0.99,
+          "bolt": 0.7619
+        },
+        "state_noise_std": 0.005,
+        "image_noise_std": 2.0,
+        "light": {
+          "dir": [
+            -0.376,
+            0.225,
+            -0.899
+          ],
+          "gain": 0.962
+        },
+        "level": 1.0,
+        "bins_fixed": true
+      },
+      "mode": "evaluate",
+      "time": 1790464359.0536935,
+      "sim_seconds": 20.0,
+      "collision_steps": 77,
+      "control_effort": 166.982,
+      "collision_penalty_total": -77.0,
+      "control_effort_penalty_total": -1.67,
+      "false_pick": false
+    }
+  ]
+}

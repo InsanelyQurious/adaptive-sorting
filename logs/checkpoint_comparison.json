@@ -1,0 +1,2052 @@
+{
+ "seed": 777,
+ "episodes": 30,
+ "deterministic": true,
+ "results": {
+  "baseline_300k": {
+   "summary": {
+    "episodes": 30,
+    "grasp": {
+     "count": 2,
+     "rate": 0.06666666666666667,
+     "ci95": [
+      0.018,
+      0.213
+     ]
+    },
+    "lift": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "placement": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "success": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "mean_placed": 0.0,
+    "mean_reward": -10.25,
+    "mean_length": 200.0,
+    "drops": 0,
+    "wrong_bin": 0,
+    "checkpoint": "/home/arun/volvo-physical-ai/checkpoints_diag_baseline/checkpoint_000301056",
+    "timesteps": 301056,
+    "run_name": "diag_baseline_fixedreward",
+    "bootstrap": false,
+    "seconds": 28.9
+   },
+   "episodes": [
+    {
+     "seed": 777,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -1.24,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 778,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.77,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 779,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.01,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 780,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.46,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 781,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.73,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 782,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.14,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 783,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.6,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 784,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.2,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 785,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -8.2,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 786,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -25.07,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 15
+    },
+    {
+     "seed": 787,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.75,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 788,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.08,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 789,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.58,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 790,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.04,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 791,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -7.26,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 792,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.18,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 793,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.67,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 794,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.97,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 795,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.15,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 796,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.64,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 797,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.44,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 798,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.42,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 799,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.3,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 800,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.65,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 801,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.79,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 802,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.41,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 803,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.37,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 804,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.09,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 805,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.03,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 806,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.29,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    }
+   ]
+  },
+  "bootstrap_300k": {
+   "summary": {
+    "episodes": 30,
+    "grasp": {
+     "count": 7,
+     "rate": 0.23333333333333334,
+     "ci95": [
+      0.118,
+      0.409
+     ]
+    },
+    "lift": {
+     "count": 2,
+     "rate": 0.06666666666666667,
+     "ci95": [
+      0.018,
+      0.213
+     ]
+    },
+    "placement": {
+     "count": 1,
+     "rate": 0.03333333333333333,
+     "ci95": [
+      0.006,
+      0.167
+     ]
+    },
+    "success": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "mean_placed": 0.03333333333333333,
+    "mean_reward": -6.8,
+    "mean_length": 200.0,
+    "drops": 0,
+    "wrong_bin": 0,
+    "checkpoint": "/home/arun/volvo-physical-ai/checkpoints/checkpoint_000301056",
+    "timesteps": 301056,
+    "run_name": "ppo_bc_bootstrap_300k",
+    "bootstrap": true,
+    "seconds": 31.0
+   },
+   "episodes": [
+    {
+     "seed": 777,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.57,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 778,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.88,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 779,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.83,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 780,
+     "success": false,
+     "placed": 1,
+     "grasp": true,
+     "lift": true,
+     "reward": 54.45,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 781,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.53,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 782,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.98,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 783,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.15,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 784,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.33,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 785,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.1,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 786,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 7.59,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 787,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.9,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 788,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.18,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 789,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.56,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 790,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.91,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 791,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -1.55,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 792,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.94,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 793,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.58,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 794,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.21,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 795,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.85,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 796,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.1,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 797,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.45,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 798,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.65,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 799,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -3.36,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 800,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 0.3,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 801,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.79,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 802,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -13.13,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 803,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.87,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 804,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.47,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 805,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.67,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 806,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.98,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    }
+   ]
+  },
+  "bootstrap_250k": {
+   "summary": {
+    "episodes": 30,
+    "grasp": {
+     "count": 9,
+     "rate": 0.3,
+     "ci95": [
+      0.167,
+      0.479
+     ]
+    },
+    "lift": {
+     "count": 5,
+     "rate": 0.16666666666666666,
+     "ci95": [
+      0.073,
+      0.336
+     ]
+    },
+    "placement": {
+     "count": 1,
+     "rate": 0.03333333333333333,
+     "ci95": [
+      0.006,
+      0.167
+     ]
+    },
+    "success": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "mean_placed": 0.03333333333333333,
+    "mean_reward": -5.17,
+    "mean_length": 200.0,
+    "drops": 0,
+    "wrong_bin": 0,
+    "checkpoint": "/home/arun/volvo-physical-ai/checkpoints/checkpoint_000250080",
+    "timesteps": 250080,
+    "run_name": "ppo_bc_bootstrap_300k",
+    "bootstrap": true,
+    "seconds": 31.4
+   },
+   "episodes": [
+    {
+     "seed": 777,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.61,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 778,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.63,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 779,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.6,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 780,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 8.85,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 781,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 13.8,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 782,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.67,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 783,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -0.96,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 784,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.84,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 785,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.87,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 786,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -1.62,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 787,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.44,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 788,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.34,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 789,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.39,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 790,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.35,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 791,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 0.22,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 792,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.97,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 793,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.43,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 794,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.8,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 795,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.82,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 796,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 7.67,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 797,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.53,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 798,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.25,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 799,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -2.48,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 800,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.05,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 801,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.51,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 802,
+     "success": false,
+     "placed": 1,
+     "grasp": true,
+     "lift": true,
+     "reward": 61.35,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 803,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 3.94,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 804,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.74,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 805,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.91,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 806,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.99,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    }
+   ]
+  },
+  "bc_init_0k": {
+   "summary": {
+    "episodes": 30,
+    "grasp": {
+     "count": 27,
+     "rate": 0.9,
+     "ci95": [
+      0.744,
+      0.965
+     ]
+    },
+    "lift": {
+     "count": 7,
+     "rate": 0.23333333333333334,
+     "ci95": [
+      0.118,
+      0.409
+     ]
+    },
+    "placement": {
+     "count": 4,
+     "rate": 0.13333333333333333,
+     "ci95": [
+      0.053,
+      0.297
+     ]
+    },
+    "success": {
+     "count": 2,
+     "rate": 0.06666666666666667,
+     "ci95": [
+      0.018,
+      0.213
+     ]
+    },
+    "mean_placed": 0.2,
+    "mean_reward": 7.81,
+    "mean_length": 192.0,
+    "drops": 0,
+    "wrong_bin": 0,
+    "checkpoint": "/home/arun/volvo-physical-ai/checkpoints/checkpoint_000000000",
+    "timesteps": 0,
+    "run_name": "ppo_bc_bootstrap_300k",
+    "bootstrap": true,
+    "seconds": 33.6
+   },
+   "episodes": [
+    {
+     "seed": 777,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.89,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 778,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 7.95,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 779,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.15,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 780,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -5.41,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 781,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.62,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 782,
+     "success": false,
+     "placed": 1,
+     "grasp": true,
+     "lift": true,
+     "reward": 54.88,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 7
+    },
+    {
+     "seed": 783,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 1.33,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 784,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 0.54,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 785,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -80.04,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 89
+    },
+    {
+     "seed": 786,
+     "success": true,
+     "placed": 2,
+     "grasp": true,
+     "lift": true,
+     "reward": 176.89,
+     "length": 85,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 4
+    },
+    {
+     "seed": 787,
+     "success": false,
+     "placed": 1,
+     "grasp": true,
+     "lift": true,
+     "reward": 75.13,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 788,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.66,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 789,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 5.6,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 790,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 6.75,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 791,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 5.37,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 792,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.4,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 793,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.01,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 794,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 5.5,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 795,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -2.85,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 796,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -111.13,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 121
+    },
+    {
+     "seed": 797,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 7.99,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 798,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 3.45,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 799,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 4.85,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 800,
+     "success": true,
+     "placed": 2,
+     "grasp": true,
+     "lift": true,
+     "reward": 180.41,
+     "length": 74,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 5
+    },
+    {
+     "seed": 801,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.46,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 802,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 1.1,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 803,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -106.49,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 111
+    },
+    {
+     "seed": 804,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.34,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 805,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": 2.53,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 806,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.96,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    }
+   ]
+  },
+  "old_3M": {
+   "summary": {
+    "episodes": 30,
+    "grasp": {
+     "count": 15,
+     "rate": 0.5,
+     "ci95": [
+      0.332,
+      0.668
+     ]
+    },
+    "lift": {
+     "count": 12,
+     "rate": 0.4,
+     "ci95": [
+      0.246,
+      0.577
+     ]
+    },
+    "placement": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "success": {
+     "count": 0,
+     "rate": 0.0,
+     "ci95": [
+      -0.0,
+      0.114
+     ]
+    },
+    "mean_placed": 0.0,
+    "mean_reward": -8.52,
+    "mean_length": 200.0,
+    "drops": 0,
+    "wrong_bin": 0,
+    "checkpoint": "/home/arun/volvo-physical-ai/checkpoints/archive_run9_fresh3M/checkpoint_003001344",
+    "timesteps": 3001344,
+    "run_name": "ppo_sorting_20260926_073818",
+    "bootstrap": false,
+    "seconds": 30.3
+   },
+   "episodes": [
+    {
+     "seed": 777,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -2.37,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 778,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -13.97,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 779,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -2.44,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 780,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -2.07,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 781,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -3.17,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 782,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -11.56,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 783,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -16.53,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 784,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -9.52,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 785,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.77,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 786,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -3.42,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 787,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -0.49,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 788,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -13.81,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 789,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": 0.44,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 790,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -3.91,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 791,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -10.25,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 9
+    },
+    {
+     "seed": 792,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -15.94,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 793,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -9.82,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 794,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -14.73,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 795,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -4.1,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 796,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -2.95,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 797,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -13.18,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 798,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -2.55,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 799,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": false,
+     "reward": -4.77,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 800,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.73,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 801,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -12.04,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 802,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -13.98,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 803,
+     "success": false,
+     "placed": 0,
+     "grasp": true,
+     "lift": true,
+     "reward": -8.57,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 804,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -10.43,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 805,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -8.88,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    },
+    {
+     "seed": 806,
+     "success": false,
+     "placed": 0,
+     "grasp": false,
+     "lift": false,
+     "reward": -15.16,
+     "length": 200,
+     "dropped": false,
+     "wrong_bin": false,
+     "collisions": 0
+    }
+   ]
+  }
+ }
+}

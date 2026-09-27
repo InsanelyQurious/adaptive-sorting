@@ -1,0 +1,183 @@
+<!--
+  Universal Robots UR10e — kinematics, masses, inertias and actuator gains are the
+  official MuJoCo Menagerie model (google-deepmind/mujoco_menagerie, BSD-3, see
+  ../assets/ur10e_meshes/LICENSE). Only additions: a mounted parallel-jaw gripper,
+  a base placement on the worktable, and named sites/cameras for the workcell.
+-->
+<mujoco model="ur10e">
+  <compiler angle="radian" meshdir="../assets/ur10e_meshes" autolimits="true"/>
+
+  <default>
+    <default class="ur10e">
+      <material specular="0.5" shininess="0.25"/>
+      <joint axis="0 1 0" range="-6.28319 6.28319" armature="0.1"/>
+      <position ctrlrange="-6.2831 6.2831"/>
+      <general biastype="affine" ctrlrange="-6.2831 6.2831" gainprm="5000" biasprm="0 -5000 -500"/>
+      <default class="size4">
+        <joint damping="10"/>
+        <general forcerange="-330 330"/>
+      </default>
+      <default class="size3">
+        <joint damping="5"/>
+        <general forcerange="-150 150"/>
+        <default class="size3_limited">
+          <joint range="-3.1415 3.1415"/>
+          <general ctrlrange="-3.1415 3.1415"/>
+        </default>
+      </default>
+      <default class="size2">
+        <joint damping="2"/>
+        <general forcerange="-56 56"/>
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom type="capsule" group="3" rgba="0.6 0.2 0.2 0.35"/>
+        <default class="eef_collision">
+          <geom type="cylinder"/>
+        </default>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+    </default>
+  </default>
+
+  <asset>
+    <material class="ur10e" name="ur_black" rgba="0.033 0.033 0.033 1"/>
+    <material class="ur10e" name="ur_jointgray" rgba="0.278 0.278 0.278 1"/>
+    <material class="ur10e" name="ur_linkgray" rgba="0.82 0.82 0.82 1"/>
+    <material class="ur10e" name="ur_blue" rgba="0.49 0.678 0.8 1"/>
+
+    <mesh file="base_0.obj"/>
+    <mesh file="base_1.obj"/>
+    <mesh file="shoulder_0.obj"/>
+    <mesh file="shoulder_1.obj"/>
+    <mesh file="shoulder_2.obj"/>
+    <mesh file="upperarm_0.obj"/>
+    <mesh file="upperarm_1.obj"/>
+    <mesh file="upperarm_2.obj"/>
+    <mesh file="upperarm_3.obj"/>
+    <mesh file="forearm_0.obj"/>
+    <mesh file="forearm_1.obj"/>
+    <mesh file="forearm_2.obj"/>
+    <mesh file="forearm_3.obj"/>
+    <mesh file="wrist1_0.obj"/>
+    <mesh file="wrist1_1.obj"/>
+    <mesh file="wrist1_2.obj"/>
+    <mesh file="wrist2_0.obj"/>
+    <mesh file="wrist2_1.obj"/>
+    <mesh file="wrist2_2.obj"/>
+    <mesh file="wrist3.obj"/>
+  </asset>
+
+  <worldbody>
+    <body name="robot_base" pos="-0.50 0 0.80" quat="0 0 0 -1" childclass="ur10e">
+      <inertial mass="4.0" pos="0 0 0" diaginertia="0.0061063308908 0.0061063308908 0.01125"/>
+      <geom mesh="base_0" material="ur_black" class="visual"/>
+      <geom mesh="base_1" material="ur_jointgray" class="visual"/>
+      <body name="shoulder_link" gravcomp="1" pos="0 0 0.181">
+        <inertial pos="0 0 0" mass="7.778" diaginertia="0.0314743 0.0314743 0.0218756"/>
+        <joint name="shoulder_pan_joint" class="size4" axis="0 0 1"/>
+        <geom mesh="shoulder_0" material="ur_blue" class="visual"/>
+        <geom mesh="shoulder_1" material="ur_black" class="visual"/>
+        <geom mesh="shoulder_2" material="ur_jointgray" class="visual"/>
+        <geom class="collision" size="0.078 0.05" pos="0 0 -0.02"/>
+        <body name="upper_arm_link" gravcomp="1" pos="0 0.176 0" quat="1 0 1 0">
+          <inertial pos="0 0 0.3065" mass="12.93" diaginertia="0.423074 0.423074 0.0363656"/>
+          <joint name="shoulder_lift_joint" class="size4"/>
+          <geom mesh="upperarm_0" material="ur_black" class="visual"/>
+          <geom mesh="upperarm_1" material="ur_jointgray" class="visual"/>
+          <geom mesh="upperarm_2" material="ur_blue" class="visual"/>
+          <geom mesh="upperarm_3" material="ur_linkgray" class="visual"/>
+          <geom class="collision" pos="0 -0.05 0" quat="1 1 0 0" size="0.078 0.08"/>
+          <geom class="collision" size="0.06 0.3" pos="0 0 0.3"/>
+          <body name="forearm_link" gravcomp="1" pos="0 -0.137 0.613">
+            <inertial pos="0 0 0.2855" mass="3.87" diaginertia="0.11059 0.11059 0.0108844"/>
+            <joint name="elbow_joint" class="size3_limited"/>
+            <geom mesh="forearm_0" material="ur_blue" class="visual"/>
+            <geom mesh="forearm_1" material="ur_black" class="visual"/>
+            <geom mesh="forearm_2" material="ur_jointgray" class="visual"/>
+            <geom mesh="forearm_3" material="ur_linkgray" class="visual"/>
+            <geom class="collision" pos="0 0.08 0" quat="1 1 0 0" size="0.058 0.065"/>
+            <geom class="collision" size="0.043 0.28" pos="0 0 0.29"/>
+            <body name="wrist_1_link" gravcomp="1" pos="0 0 0.571" quat="1 0 1 0">
+              <inertial pos="0 0.135 0" quat="0.5 0.5 -0.5 0.5" mass="1.96"
+                diaginertia="0.0055125 0.00510825 0.00510825"/>
+              <joint name="wrist_1_joint" class="size2"/>
+              <geom mesh="wrist1_0" material="ur_black" class="visual"/>
+              <geom mesh="wrist1_1" material="ur_blue" class="visual"/>
+              <geom mesh="wrist1_2" material="ur_jointgray" class="visual"/>
+              <geom class="collision" pos="0 0.06 0" quat="1 1 0 0" size="0.05 0.07"/>
+              <body name="wrist_2_link" gravcomp="1" pos="0 0.135 0">
+                <inertial pos="0 0 0.12" quat="0.5 0.5 -0.5 0.5" mass="1.96"
+                  diaginertia="0.0055125 0.00510825 0.00510825"/>
+                <joint name="wrist_2_joint" axis="0 0 1" class="size2"/>
+                <geom mesh="wrist2_0" material="ur_black" class="visual"/>
+                <geom mesh="wrist2_1" material="ur_blue" class="visual"/>
+                <geom mesh="wrist2_2" material="ur_jointgray" class="visual"/>
+                <geom class="collision" size="0.046 0.065" pos="0 0 0.05"/>
+                <geom class="collision" pos="0 0.028 0.12" quat="1 1 0 0" size="0.046 0.043"/>
+                <body name="wrist_3_link" gravcomp="1" pos="0 0 0.12">
+                  <inertial pos="0 0.092 0" quat="0 1 -1 0" mass="0.202"
+                    diaginertia="0.000204525 0.000144346 0.000144346"/>
+                  <joint name="wrist_3_joint" class="size2"/>
+                  <geom material="ur_linkgray" mesh="wrist3" class="visual"/>
+                  <geom class="eef_collision" pos="0 0.097 0" quat="1 1 0 0" size="0.046 0.02"/>
+                  <site name="attachment_site" pos="0 0.1 0" quat="-1 1 0 0"/>
+                  <!-- ============ Parallel-jaw gripper (custom, see ASSUMPTIONS.md) ============ -->
+                  <body name="gripper_base" gravcomp="1" pos="0 0.117 0" quat="-1 1 0 0">
+                    <inertial pos="0 0 0.05" mass="1.2" diaginertia="0.003 0.003 0.0015"/>
+                    <geom name="grip_flange" type="cylinder" size="0.04 0.006" pos="0 0 0.006" rgba="0.15 0.15 0.15 1" group="2" contype="0" conaffinity="0"/>
+                    <geom name="grip_body" type="box" size="0.04 0.028 0.028" pos="0 0 0.04" rgba="0.2 0.2 0.22 1"/>
+                    <geom name="grip_palm" type="box" size="0.046 0.075 0.011" pos="0 0 0.079" rgba="0.1 0.1 0.1 1"/>
+                    <geom name="grip_rail" type="box" size="0.012 0.08 0.004" pos="0 0 0.094" rgba="0.6 0.6 0.62 1" group="2" contype="0" conaffinity="0"/>
+                    <site name="pinch" pos="0 0 0.162" type="sphere" size="0.006" rgba="0.1 0.9 0.3 0.6" group="4"/>
+                    <site name="tcp" pos="0 0 0.162" group="4"/>
+                    <camera name="gripper_cam" pos="0.06 0 0.08" quat="0.5 -0.5 0.5 0.5" fovy="70"/>
+                    <body name="left_finger" gravcomp="1" pos="0 0.07 0.098">
+                      <inertial pos="0 0 0.035" mass="0.2" diaginertia="0.0002 0.0002 0.0001"/>
+                      <joint name="left_finger_joint" type="slide" axis="0 -1 0" range="0 0.07" damping="30" armature="0.05"/>
+                      <geom name="left_finger_geom" type="box" size="0.014 0.006 0.036" pos="0 0 0.036" rgba="0.55 0.55 0.58 1"/>
+                      <geom name="left_pad" type="box" size="0.013 0.0025 0.028" pos="0 -0.0085 0.045" rgba="0.12 0.12 0.12 1"
+                            friction="1.6 0.02 0.001" condim="4" solimp="0.9 0.95 0.001" solref="0.01 1" priority="2"/>
+                    </body>
+                    <body name="right_finger" gravcomp="1" pos="0 -0.07 0.098">
+                      <inertial pos="0 0 0.035" mass="0.2" diaginertia="0.0002 0.0002 0.0001"/>
+                      <joint name="right_finger_joint" type="slide" axis="0 1 0" range="0 0.07" damping="30" armature="0.05"/>
+                      <geom name="right_finger_geom" type="box" size="0.014 0.006 0.036" pos="0 0 0.036" rgba="0.55 0.55 0.58 1"/>
+                      <geom name="right_pad" type="box" size="0.013 0.0025 0.028" pos="0 0.0085 0.045" rgba="0.12 0.12 0.12 1"
+                            friction="1.6 0.02 0.001" condim="4" solimp="0.9 0.95 0.001" solref="0.01 1" priority="2"/>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="gripper_base" body2="left_finger"/>
+    <exclude body1="gripper_base" body2="right_finger"/>
+    <exclude body1="wrist_3_link" body2="gripper_base"/>
+    <exclude body1="wrist_2_link" body2="gripper_base"/>
+  </contact>
+
+  <equality>
+    <joint name="finger_coupling" joint1="left_finger_joint" joint2="right_finger_joint" polycoef="0 1 0 0 0" solimp="0.9 0.95 0.001" solref="0.02 1"/>
+  </equality>
+
+  <actuator>
+    <general class="size4" name="shoulder_pan" joint="shoulder_pan_joint"/>
+    <general class="size4" name="shoulder_lift" joint="shoulder_lift_joint"/>
+    <general class="size3_limited" name="elbow" joint="elbow_joint"/>
+    <general class="size2" name="wrist_1" joint="wrist_1_joint"/>
+    <general class="size2" name="wrist_2" joint="wrist_2_joint"/>
+    <general class="size2" name="wrist_3" joint="wrist_3_joint"/>
+    <!-- gripper: ctrl = finger travel per finger (0 = fully open, 140 mm aperture; 0.07 = closed) -->
+    <general name="gripper" joint="left_finger_joint" biastype="affine" ctrlrange="0 0.07"
+             gainprm="3000" biasprm="0 -3000 -150" forcerange="-60 60"/>
+  </actuator>
+</mujoco>

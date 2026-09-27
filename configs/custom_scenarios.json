@@ -1,0 +1,70 @@
+{
+ "cluttered_u_bracket": {
+  "poses": {
+   "bracket": {
+    "x": 0.2088,
+    "y": 0.4649,
+    "yaw": -0.15
+   },
+   "bolt": {
+    "x": 0.1804,
+    "y": -0.1803,
+    "yaw": 2.9379
+   }
+  },
+  "variants": {
+   "bracket": "bracket_u",
+   "bolt": "bolt"
+  },
+  "layout": [
+   {
+    "part": "reject_cap",
+    "x": -0.4398,
+    "y": 0.3566,
+    "yaw": -2.4098
+   },
+   {
+    "part": "bracket_extra",
+    "x": 0.05,
+    "y": 0.2,
+    "yaw": 0.5
+   }
+  ],
+  "saved_iso": "2026-09-26T16:14:30",
+  "display_name": "Cluttered U bracket"
+ },
+ "clutter_showcase": {
+  "poses": {
+   "bracket": {
+    "x": 0.12,
+    "y": 0.1,
+    "yaw": 0.0
+   },
+   "bolt": {
+    "x": 0.2604,
+    "y": -0.1,
+    "yaw": -0.0
+   }
+  },
+  "variants": {
+   "bracket": "bracket",
+   "bolt": "bolt"
+  },
+  "layout": [
+   {
+    "part": "bracket_extra",
+    "x": 0.02,
+    "y": 0.22,
+    "yaw": 0.6
+   },
+   {
+    "part": "reject_cap",
+    "x": 0.3,
+    "y": -0.22,
+    "yaw": -1.0
+   }
+  ],
+  "saved_iso": "2026-09-26T19:11:48",
+  "display_name": "clutter_showcase"
+ }
+}

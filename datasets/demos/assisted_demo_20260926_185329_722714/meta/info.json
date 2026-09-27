@@ -1,0 +1,154 @@
+{
+    "codebase_version": "v3.0",
+    "fps": 10,
+    "features": {
+        "observation.state": {
+            "dtype": "float32",
+            "shape": [
+                44
+            ],
+            "names": [
+                "joint_pos_0",
+                "joint_pos_1",
+                "joint_pos_2",
+                "joint_pos_3",
+                "joint_pos_4",
+                "joint_pos_5",
+                "joint_vel_0",
+                "joint_vel_1",
+                "joint_vel_2",
+                "joint_vel_3",
+                "joint_vel_4",
+                "joint_vel_5",
+                "gripper_opening",
+                "ee_x",
+                "ee_y",
+                "ee_z",
+                "ee_yaw_sin",
+                "ee_yaw_cos",
+                "bracket_x",
+                "bracket_y",
+                "bracket_z",
+                "bracket_yaw_sin",
+                "bracket_yaw_cos",
+                "bolt_x",
+                "bolt_y",
+                "bolt_z",
+                "bolt_yaw_sin",
+                "bolt_yaw_cos",
+                "bin_a_x",
+                "bin_a_y",
+                "bin_a_z",
+                "bin_b_x",
+                "bin_b_y",
+                "bin_b_z",
+                "target_is_bracket",
+                "target_is_bolt",
+                "tcp_to_target_x",
+                "tcp_to_target_y",
+                "tcp_to_target_z",
+                "target_to_bin_x",
+                "target_to_bin_y",
+                "target_to_bin_z",
+                "grasped_flag",
+                "lifted_flag"
+            ]
+        },
+        "action": {
+            "dtype": "float32",
+            "shape": [
+                7
+            ],
+            "names": [
+                "dX",
+                "dY",
+                "dZ",
+                "dRx",
+                "dRy",
+                "dRz",
+                "gripper"
+            ]
+        },
+        "next.reward": {
+            "dtype": "float32",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "next.done": {
+            "dtype": "bool",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "next.success": {
+            "dtype": "bool",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "observation.images.overhead": {
+            "dtype": "image",
+            "shape": [
+                64,
+                64,
+                3
+            ],
+            "names": [
+                "height",
+                "width",
+                "channels"
+            ]
+        },
+        "timestamp": {
+            "dtype": "float32",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "frame_index": {
+            "dtype": "int64",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "episode_index": {
+            "dtype": "int64",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "index": {
+            "dtype": "int64",
+            "shape": [
+                1
+            ],
+            "names": null
+        },
+        "task_index": {
+            "dtype": "int64",
+            "shape": [
+                1
+            ],
+            "names": null
+        }
+    },
+    "total_episodes": 1,
+    "total_frames": 39,
+    "total_tasks": 1,
+    "chunks_size": 1000,
+    "data_files_size_in_mb": 100,
+    "video_files_size_in_mb": 200,
+    "data_path": "data/chunk-{chunk_index:03d}/file-{file_index:03d}.parquet",
+    "video_path": null,
+    "robot_type": "UR10e",
+    "splits": {
+        "train": "0:1"
+    }
+}

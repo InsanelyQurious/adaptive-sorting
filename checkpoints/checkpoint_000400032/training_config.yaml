@@ -1,0 +1,64 @@
+algorithm: PPO
+policy: MultiInputPolicy
+device: auto
+seed: 42
+n_envs: 12
+total_timesteps: 400000
+n_steps: 256
+batch_size: 768
+n_epochs: 4
+learning_rate: 0.0003
+gamma: 0.99
+gae_lambda: 0.95
+clip_range: 0.2
+ent_coef: 0.003
+vf_coef: 0.5
+max_grad_norm: 0.5
+target_kl: 0.02
+log_std_init: -1.0
+lr_gate:
+  enabled: true
+  initial_scale: 0.1
+  min_scale: 0.05
+  max_scale: 1.0
+  up_factor: 2.0
+  down_factor: 0.5
+  regress_tolerance: 0.05
+normalize_state: true
+features_dim: 128
+net_arch:
+- 256
+- 256
+checkpoint_every_steps: 25000
+eval_every_steps: 50000
+eval_episodes: 20
+log_dir: logs
+checkpoint_dir: checkpoints
+metrics_file: logs/metrics.jsonl
+status_file: logs/training_status.json
+control_file: logs/training_control.json
+dataset:
+  record_eval_episodes: true
+  dir: datasets/eval_rollouts
+bootstrap:
+  init_from_demos: true
+  demos_dir: datasets/demos
+  demo_types:
+  - teleop_demo
+  - scripted_demo
+  successful_only: true
+  holdout_fraction: 0.1
+  bc_epochs: 40
+  bc_batch_size: 256
+  bc_learning_rate: 0.0005
+  bc_value_regression: true
+  bc_loss_coef: 1.0
+  bc_loss_coef_floor: 0.25
+  bc_loss_decay_timesteps: 1000000
+  bc_loss_type: mse
+  bc_aux_coef: 0.0
+  bc_aux_timesteps: 150000
+  bc_aux_steps_per_iter: 4
+  freeze_obs_norm: true
+  curriculum_scale: 0.3
+run_name: ppo_bc_anchored_400k

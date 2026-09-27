@@ -1,0 +1,299 @@
+<mujoco model="volvo_sorting_workcell">
+  <include file="../robots/ur10e.xml"/>
+
+  <!-- timestep 1 ms (was 2 ms): with 2 ms the 12 mm bracket occasionally diverged when pinched between a finger pad
+       and an 8 mm bin wall at release (4/60 clean policy episodes); 1 ms + light free-joint damping -> 0/120. -->
+  <option timestep="0.001" integrator="implicitfast" cone="elliptic" impratio="10" noslip_iterations="3"/>
+
+  <visual>
+    <global offwidth="1280" offheight="960" azimuth="150" elevation="-25"/>
+    <quality shadowsize="4096" offsamples="4"/>
+    <headlight ambient="0.35 0.35 0.38" diffuse="0.45 0.45 0.45" specular="0.1 0.1 0.1"/>
+    <map znear="0.01" zfar="60" shadowclip="3" shadowscale="0.6"/>
+    <rgba haze="0.12 0.13 0.15 1"/>
+  </visual>
+
+  <statistic center="0.0 0 0.9" extent="2.4"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.16 0.17 0.19" rgb2="0.05 0.05 0.06" width="512" height="3072"/>
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1="0.30 0.31 0.33" rgb2="0.26 0.27 0.29" mark="edge" markrgb="0.36 0.37 0.39" width="512" height="512"/>
+    <material name="floor_mat" texture="floor_tex" texrepeat="12 12" texuniform="true" reflectance="0.15" specular="0.2" shininess="0.3"/>
+    <texture name="wall_tex" type="2d" builtin="flat" rgb1="0.55 0.57 0.60" width="64" height="64"/>
+    <material name="wall_mat" texture="wall_tex" rgba="0.55 0.57 0.60 1"/>
+    <material name="table_mat" rgba="0.36 0.37 0.39 1" specular="0.4" shininess="0.5" reflectance="0.1"/>
+    <material name="table_frame_mat" rgba="0.12 0.12 0.13 1" specular="0.3"/>
+    <material name="bin_blue" rgba="0.08 0.28 0.75 1" specular="0.3" shininess="0.4"/>
+    <material name="bin_blue_dark" rgba="0.06 0.20 0.55 1"/>
+    <material name="steel_dark" rgba="0.30 0.31 0.33 1" specular="0.8" shininess="0.8"/>
+    <material name="steel_zinc" rgba="0.62 0.63 0.60 1" specular="0.9" shininess="0.7"/>
+    <material name="safety_yellow" rgba="0.95 0.78 0.10 1"/>
+    <material name="safety_black" rgba="0.05 0.05 0.05 1"/>
+    <material name="rack_orange" rgba="0.85 0.35 0.08 1"/>
+    <material name="rack_blue" rgba="0.10 0.20 0.50 1"/>
+    <material name="pallet_wood" rgba="0.55 0.42 0.25 1"/>
+    <material name="cardboard" rgba="0.62 0.50 0.35 1"/>
+    <material name="column_mat" rgba="0.72 0.73 0.75 1" specular="0.2"/>
+    <material name="fixture_mat" rgba="0.85 0.86 0.88 1" emission="0.9"/>
+    <material name="tripod_mat" rgba="0.10 0.10 0.11 1" specular="0.5"/>
+    <material name="camera_body_mat" rgba="0.74 0.75 0.78 1" specular="0.6" shininess="0.5"/>
+    <material name="camera_dark_mat" rgba="0.06 0.06 0.07 1" specular="0.4"/>
+    <material name="cable_mat" rgba="0.02 0.02 0.02 1"/>
+  </asset>
+
+  <worldbody>
+    <!-- ================= Lighting ================= -->
+    <light name="key" pos="1.5 -1.5 4.0" dir="-0.35 0.35 -1" directional="true" diffuse="0.55 0.55 0.55" specular="0.25 0.25 0.25" castshadow="true"/>
+    <light name="fill" pos="-2 2 3.5" dir="0.4 -0.4 -1" directional="false" diffuse="0.35 0.35 0.38" specular="0.05 0.05 0.05" castshadow="false"/>
+    <light name="cell_spot" pos="0.0 0 2.9" dir="0 0 -1" directional="false" diffuse="0.5 0.5 0.5" specular="0.15 0.15 0.15" cutoff="55" exponent="8" castshadow="false"/>
+
+    <!-- ================= Floor / walls ================= -->
+    <geom name="floor" type="plane" size="0 0 0.1" material="floor_mat" friction="1 0.005 0.0001"/>
+    <geom name="wall_back" type="box" pos="-4.5 0 3" size="0.05 9 3" material="wall_mat" contype="0" conaffinity="0"/>
+    <geom name="wall_left" type="box" pos="0 6 3" size="7 0.05 3" material="wall_mat" contype="0" conaffinity="0"/>
+
+    <!-- Safety floor markings around the workcell -->
+    <geom name="mark_y0" type="box" pos="0 -1.35 0.001" size="1.7 0.05 0.001" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="mark_y1" type="box" pos="0 1.35 0.001" size="1.7 0.05 0.001" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="mark_x0" type="box" pos="-1.7 0 0.001" size="0.05 1.35 0.001" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="mark_x1" type="box" pos="1.7 0 0.001" size="0.05 1.35 0.001" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="mark_b0" type="box" pos="-0.9 -1.35 0.0015" size="0.25 0.05 0.001" material="safety_black" contype="0" conaffinity="0"/>
+    <geom name="mark_b1" type="box" pos="0.9 -1.35 0.0015" size="0.25 0.05 0.001" material="safety_black" contype="0" conaffinity="0"/>
+    <geom name="mark_b2" type="box" pos="-0.9 1.35 0.0015" size="0.25 0.05 0.001" material="safety_black" contype="0" conaffinity="0"/>
+    <geom name="mark_b3" type="box" pos="0.9 1.35 0.0015" size="0.25 0.05 0.001" material="safety_black" contype="0" conaffinity="0"/>
+
+    <!-- ================= Worktable ================= -->
+    <geom name="table_top" type="box" pos="-0.1 0 0.775" size="0.8 0.6 0.025" material="table_mat" friction="1.0 0.005 0.0001"/>
+    <geom name="table_skirt" type="box" pos="-0.1 0 0.735" size="0.78 0.58 0.015" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="leg0" type="box" pos="-0.85 -0.55 0.36" size="0.03 0.03 0.36" material="table_frame_mat"/>
+    <geom name="leg1" type="box" pos="-0.85  0.55 0.36" size="0.03 0.03 0.36" material="table_frame_mat"/>
+    <geom name="leg2" type="box" pos=" 0.65 -0.55 0.36" size="0.03 0.03 0.36" material="table_frame_mat"/>
+    <geom name="leg3" type="box" pos=" 0.65  0.55 0.36" size="0.03 0.03 0.36" material="table_frame_mat"/>
+    <geom name="brace0" type="box" pos="-0.1 -0.55 0.12" size="0.75 0.02 0.02" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="brace1" type="box" pos="-0.1  0.55 0.12" size="0.75 0.02 0.02" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <!-- robot mounting plate -->
+    <geom name="mount_plate" type="cylinder" pos="-0.5 0 0.803" size="0.12 0.003" material="steel_dark" contype="0" conaffinity="0"/>
+    <!-- control cable from base down the table -->
+    <geom name="cable0" type="capsule" fromto="-0.62 0.05 0.80 -0.88 0.1 0.72" size="0.008" material="cable_mat" contype="0" conaffinity="0"/>
+    <geom name="cable1" type="capsule" fromto="-0.88 0.1 0.72 -0.88 0.12 0.05" size="0.008" material="cable_mat" contype="0" conaffinity="0"/>
+    <!-- controller box under the table -->
+    <geom name="ctrl_box" type="box" pos="-0.6 0.3 0.25" size="0.18 0.14 0.24" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="ctrl_led" type="box" pos="-0.6 0.441 0.40" size="0.01 0.002 0.004" rgba="0.1 0.9 0.2 1" contype="0" conaffinity="0"/>
+
+    <!-- Spawn zone marking (visual guide) -->
+    <site name="spawn_zone" type="box" pos="0.175 0 0.8005" size="0.20 0.24 0.0004" rgba="0.9 0.9 0.9 0.10" group="4"/>
+
+    <!-- ================= Bins (blue) ================= -->
+    <!-- Bin A: bracket target. inner 0.28 x 0.20, wall height 0.12 -->
+    <body name="bin_a" pos="0.20 0.42 0.80">
+      <geom name="bin_a_floor" type="box" pos="0 0 0.004" size="0.15 0.11 0.004" material="bin_blue_dark"/>
+      <geom name="bin_a_w0" type="box" pos="0 0.106 0.06" size="0.15 0.004 0.06" material="bin_blue"/>
+      <geom name="bin_a_w1" type="box" pos="0 -0.106 0.06" size="0.15 0.004 0.06" material="bin_blue"/>
+      <geom name="bin_a_w2" type="box" pos="0.146 0 0.06" size="0.004 0.11 0.06" material="bin_blue"/>
+      <geom name="bin_a_w3" type="box" pos="-0.146 0 0.06" size="0.004 0.11 0.06" material="bin_blue"/>
+      <geom name="bin_a_rim0" type="box" pos="0 0.11 0.121" size="0.158 0.008 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_a_rim1" type="box" pos="0 -0.11 0.121" size="0.158 0.008 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_a_rim2" type="box" pos="0.15 0 0.121" size="0.008 0.118 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_a_rim3" type="box" pos="-0.15 0 0.121" size="0.008 0.118 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <site name="bin_a_center" pos="0 0 0.06" type="box" size="0.14 0.10 0.06" rgba="0 1 0 0.0" group="4"/>
+    </body>
+    <!-- Bin B: bolt target -->
+    <body name="bin_b" pos="0.20 -0.42 0.80">
+      <geom name="bin_b_floor" type="box" pos="0 0 0.004" size="0.15 0.11 0.004" material="bin_blue_dark"/>
+      <geom name="bin_b_w0" type="box" pos="0 0.106 0.06" size="0.15 0.004 0.06" material="bin_blue"/>
+      <geom name="bin_b_w1" type="box" pos="0 -0.106 0.06" size="0.15 0.004 0.06" material="bin_blue"/>
+      <geom name="bin_b_w2" type="box" pos="0.146 0 0.06" size="0.004 0.11 0.06" material="bin_blue"/>
+      <geom name="bin_b_w3" type="box" pos="-0.146 0 0.06" size="0.004 0.11 0.06" material="bin_blue"/>
+      <geom name="bin_b_rim0" type="box" pos="0 0.11 0.121" size="0.158 0.008 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_b_rim1" type="box" pos="0 -0.11 0.121" size="0.158 0.008 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_b_rim2" type="box" pos="0.15 0 0.121" size="0.008 0.118 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <geom name="bin_b_rim3" type="box" pos="-0.15 0 0.121" size="0.008 0.118 0.003" material="bin_blue" contype="0" conaffinity="0"/>
+      <site name="bin_b_center" pos="0 0 0.06" type="box" size="0.14 0.10 0.06" rgba="1 0 0 0.0" group="4"/>
+    </body>
+
+    <!-- ================= Automotive components ================= -->
+    <!-- L-bracket: 120 x 60 x 12 mm plate with a 50 mm flange, zinc-plated steel, ~0.36 kg -->
+    <body name="bracket" pos="0.10 0.08 0.83">
+      <freejoint name="bracket_free"/>
+      <inertial pos="0.012 0 0.008" mass="0.36" diaginertia="2.0e-4 4.5e-4 5.0e-4"/>
+      <geom name="bracket_plate" type="box" size="0.060 0.030 0.006" material="steel_zinc" mass="0.26" friction="0.9 0.005 0.0001"/>
+      <geom name="bracket_flange" type="box" pos="0.054 0 0.031" size="0.006 0.030 0.025" material="steel_zinc" mass="0.10" friction="0.9 0.005 0.0001"/>
+      <geom name="bracket_hole0" type="cylinder" pos="-0.035 0 0.0061" size="0.007 0.0002" rgba="0.15 0.15 0.15 1" contype="0" conaffinity="0" mass="0"/>
+      <geom name="bracket_hole1" type="cylinder" pos="0.005 0 0.0061" size="0.007 0.0002" rgba="0.15 0.15 0.15 1" contype="0" conaffinity="0" mass="0"/>
+      <site name="bracket_site" pos="0.0 0 0.012" group="4"/>
+    </body>
+    <!-- M20 x 100 hex bolt, black oxide steel, ~0.22 kg. Capsule shaft + box hex head: analytic
+         (capsule-box / box-box) collisions, which are far more robust than cylinder-box. -->
+    <body name="bolt" pos="0.25 -0.08 0.83">
+      <freejoint name="bolt_free"/>
+      <!-- explicit inertia: the axial inertia of a thin bolt (~1e-5) is raised to 1.5e-4 for
+           numerical stability of the free-body rotational DOF (see ASSUMPTIONS.md) -->
+      <inertial pos="-0.012 0 0" mass="0.22" diaginertia="1.5e-4 3.0e-4 3.0e-4"/>
+      <geom name="bolt_shaft" type="capsule" size="0.010 0.040" quat="0.7071 0 0.7071 0" material="steel_dark" mass="0.16" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_head" type="box" pos="-0.058 0 0" size="0.008 0.015 0.013" material="steel_dark" mass="0.06" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_head_vis" type="box" pos="-0.058 0 0" size="0.008 0.015 0.013" quat="0.8660 0.5 0 0" material="steel_dark" mass="0" contype="0" conaffinity="0"/>
+      <geom name="bolt_head_vis2" type="box" pos="-0.058 0 0" size="0.008 0.015 0.013" quat="0.8660 -0.5 0 0" material="steel_dark" mass="0" contype="0" conaffinity="0"/>
+      <site name="bolt_site" pos="0 0 0" group="4"/>
+    </body>
+
+    <!-- ================= Parts pool for the scene builder (Phase 3) =================
+         Alternative task-object geometries, clutter copies and the rejection-case part. All are real free bodies
+         with contact physics; when not on the table they are parked far outside the cell (see configs/parts_catalog.yaml).
+         Long axis of every part = body x (the gripper's x-axis is aligned with it for grasping). -->
+    <body name="bracket_flat" pos="-6.0 -6.0 0.05">
+      <freejoint name="bracket_flat_free"/>
+      <inertial pos="0 0 0" mass="0.30" diaginertia="1.2e-4 4.0e-4 5.0e-4"/>
+      <geom name="bracket_flat_plate" type="box" size="0.060 0.030 0.004" material="steel_zinc" mass="0.30" friction="0.9 0.005 0.0001"/>
+      <geom name="bracket_flat_hole0" type="cylinder" pos="-0.035 0 0.0041" size="0.007 0.0002" rgba="0.15 0.15 0.15 1" contype="0" conaffinity="0" mass="0"/>
+      <geom name="bracket_flat_hole1" type="cylinder" pos="0.035 0 0.0041" size="0.007 0.0002" rgba="0.15 0.15 0.15 1" contype="0" conaffinity="0" mass="0"/>
+    </body>
+    <body name="bracket_u" pos="-6.0 -5.65 0.05">
+      <freejoint name="bracket_u_free"/>
+      <inertial pos="0 0 0.012" mass="0.34" diaginertia="2.5e-4 4.0e-4 5.0e-4"/>
+      <geom name="bracket_u_base" type="box" size="0.050 0.025 0.003" material="steel_zinc" mass="0.16" friction="0.9 0.005 0.0001"/>
+      <geom name="bracket_u_w0" type="box" pos="0 0.022 0.015" size="0.050 0.003 0.015" material="steel_zinc" mass="0.09" friction="0.9 0.005 0.0001"/>
+      <geom name="bracket_u_w1" type="box" pos="0 -0.022 0.015" size="0.050 0.003 0.015" material="steel_zinc" mass="0.09" friction="0.9 0.005 0.0001"/>
+    </body>
+    <body name="bolt_socket" pos="-6.0 -5.30 0.05">
+      <freejoint name="bolt_socket_free"/>
+      <inertial pos="-0.010 0 0" mass="0.15" diaginertia="1.0e-4 2.0e-4 2.0e-4"/>
+      <geom name="bolt_socket_shaft" type="capsule" size="0.008 0.032" quat="0.7071 0 0.7071 0" material="steel_dark" mass="0.11" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_socket_head" type="box" pos="-0.046 0 0" size="0.008 0.012 0.012" material="steel_dark" mass="0.04" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_socket_head_vis" type="box" pos="-0.046 0 0" size="0.008 0.012 0.012" quat="0.9239 0.3827 0 0" material="steel_dark" mass="0" contype="0" conaffinity="0"/>
+      <geom name="bolt_socket_recess" type="box" pos="-0.0541 0 0" size="0.0002 0.004 0.004" rgba="0.05 0.05 0.05 1" mass="0" contype="0" conaffinity="0"/>
+    </body>
+    <body name="bolt_m12" pos="-6.0 -4.95 0.05">
+      <freejoint name="bolt_m12_free"/>
+      <inertial pos="-0.008 0 0" mass="0.07" diaginertia="6.0e-5 1.0e-4 1.0e-4"/>
+      <geom name="bolt_m12_shaft" type="capsule" size="0.006 0.024" quat="0.7071 0 0.7071 0" material="steel_zinc" mass="0.05" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_m12_head" type="box" pos="-0.034 0 0" size="0.005 0.010 0.009" material="steel_zinc" mass="0.02" friction="0.9 0.005 0.0001"/>
+      <geom name="bolt_m12_head_vis" type="box" pos="-0.034 0 0" size="0.005 0.010 0.009" quat="0.8660 0.5 0 0" material="steel_zinc" mass="0" contype="0" conaffinity="0"/>
+    </body>
+    <body name="bracket_extra" pos="-6.0 -4.60 0.05">
+      <freejoint name="bracket_extra_free"/>
+      <inertial pos="0.012 0 0.008" mass="0.36" diaginertia="2.0e-4 4.5e-4 5.0e-4"/>
+      <geom name="bracket_extra_plate" type="box" size="0.060 0.030 0.006" material="steel_zinc" mass="0.26" friction="0.9 0.005 0.0001" priority="1" solref="0.03 1" solimp="0.9 0.95 0.01 0.5 2"/>
+      <geom name="bracket_extra_flange" type="box" pos="0.054 0 0.031" size="0.006 0.030 0.025" material="steel_zinc" mass="0.10" friction="0.9 0.005 0.0001" priority="1" solref="0.03 1" solimp="0.9 0.95 0.01 0.5 2"/>
+    </body>
+    <body name="bolt_extra" pos="-6.0 -4.25 0.05">
+      <freejoint name="bolt_extra_free"/>
+      <inertial pos="-0.012 0 0" mass="0.22" diaginertia="1.5e-4 3.0e-4 3.0e-4"/>
+      <geom name="bolt_extra_shaft" type="capsule" size="0.010 0.040" quat="0.7071 0 0.7071 0" material="steel_dark" mass="0.16" friction="0.9 0.005 0.0001" priority="1" solref="0.03 1" solimp="0.9 0.95 0.01 0.5 2"/>
+      <geom name="bolt_extra_head" type="box" pos="-0.058 0 0" size="0.008 0.015 0.013" material="steel_dark" mass="0.06" friction="0.9 0.005 0.0001" priority="1" solref="0.03 1" solimp="0.9 0.95 0.01 0.5 2"/>
+    </body>
+    <!-- Extra / rejection parts carry priority=1 soft contact parameters (solref 0.03 s, solimp 0.9-0.95): when the arm
+         drags a grasped task part into one of them, or wedges one against a bin wall, the contact yields instead of
+         producing the stiff pinch that blew up the task object's free joint (see DEBUGGING.md part 3). Task objects and
+         their variants keep the default stiff contacts so grasp physics is unchanged for the trained policy. -->
+    <!-- rejection case: a red plastic cap that is not part of the sorting task -->
+    <body name="reject_cap" pos="-6.0 -3.90 0.05">
+      <freejoint name="reject_cap_free"/>
+      <inertial pos="0 0 0" mass="0.05" diaginertia="2.0e-5 2.0e-5 2.5e-5"/>
+      <geom name="reject_cap_body" type="box" size="0.020 0.020 0.012" rgba="0.82 0.19 0.18 1" mass="0.05" friction="0.8 0.005 0.0001" priority="1" solref="0.03 1" solimp="0.9 0.95 0.01 0.5 2"/>
+      <geom name="reject_cap_top" type="box" pos="0 0 0.013" size="0.014 0.014 0.001" rgba="0.95 0.35 0.30 1" mass="0" contype="0" conaffinity="0"/>
+    </body>
+    <!-- photo booth for catalog thumbnails: parts are moved here one at a time at start-up and rendered by catalog_cam -->
+    <geom name="booth_floor" type="box" pos="-6.0 0.0 0.001" size="0.25 0.25 0.001" rgba="0.22 0.23 0.26 1" contype="0" conaffinity="0"/>
+    <camera name="catalog_cam" pos="-5.86 -0.14 0.19" xyaxes="0.7071 -0.7071 0 0.4 0.4 0.8246" fovy="42"/>
+
+    <!-- ================= Overhead camera on boom ================= -->
+    <geom name="tripod_pole" type="cylinder" fromto="0.05 1.05 0 0.05 1.05 2.15" size="0.03" material="tripod_mat"/>
+    <geom name="tripod_foot0" type="box" pos="0.05 1.05 0.02" size="0.18 0.18 0.02" material="tripod_mat"/>
+    <geom name="tripod_boom" type="cylinder" fromto="0.05 1.05 2.12 0.05 0.0 2.12" size="0.02" material="tripod_mat" contype="0" conaffinity="0"/>
+    <!-- Visible camera unit (VISUAL ONLY: contype/conaffinity 0, never touches physics). The body origin
+         coincides with the <camera name="overhead"> pose below; every part of the housing sits ABOVE the
+         optical centre (z >= 2.001) so nothing of it can ever appear in the learning camera's image. -->
+    <body name="overhead_camera_unit" pos="0.05 0.0 2.00">
+      <geom name="cam_housing" type="box" pos="0 0 0.060" size="0.070 0.050 0.038" material="camera_body_mat" contype="0" conaffinity="0"/>
+      <geom name="cam_housing_top" type="box" pos="0 0 0.101" size="0.035 0.035 0.004" material="camera_dark_mat" contype="0" conaffinity="0"/>
+      <geom name="cam_lens_barrel" type="cylinder" pos="0 0 0.013" size="0.028 0.012" material="camera_dark_mat" contype="0" conaffinity="0"/>
+      <geom name="cam_lens_ring" type="cylinder" pos="0 0 0.0015" size="0.030 0.0012" rgba="0.75 0.76 0.78 1" contype="0" conaffinity="0"/>
+      <geom name="cam_lens_glass" type="cylinder" pos="0 0 0.0035" size="0.020 0.0008" rgba="0.15 0.30 0.55 1" contype="0" conaffinity="0"/>
+      <geom name="cam_led" type="box" pos="0.060 0.035 0.080" size="0.005 0.005 0.005" rgba="0.95 0.15 0.10 1" contype="0" conaffinity="0"/>
+      <geom name="cam_label" type="box" pos="0.0706 0 0.060" size="0.0005 0.030 0.014" material="safety_yellow" contype="0" conaffinity="0"/>
+      <geom name="cam_bracket" type="box" pos="0 0 0.112" size="0.012 0.012 0.010" material="tripod_mat" contype="0" conaffinity="0"/>
+      <!-- Field-of-view overlay (geom group 5, hidden by default; toggled for the 3rd-person viewport only):
+           edges from the optical centre to the corners of the image footprint on the table (fovy 52 deg,
+           square image, 1.20 m to the table => half-width 1.20*tan(26 deg) = 0.585 m) plus the footprint outline. -->
+      <geom name="frustum_e0" type="capsule" fromto="0 0 0  0.585  0.585 -1.199" size="0.0025" rgba="0.25 0.85 1.0 0.55" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_e1" type="capsule" fromto="0 0 0  0.585 -0.585 -1.199" size="0.0025" rgba="0.25 0.85 1.0 0.55" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_e2" type="capsule" fromto="0 0 0 -0.585  0.585 -1.199" size="0.0025" rgba="0.25 0.85 1.0 0.55" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_e3" type="capsule" fromto="0 0 0 -0.585 -0.585 -1.199" size="0.0025" rgba="0.25 0.85 1.0 0.55" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_f0" type="capsule" fromto=" 0.585  0.585 -1.199  0.585 -0.585 -1.199" size="0.003" rgba="0.25 0.85 1.0 0.7" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_f1" type="capsule" fromto=" 0.585 -0.585 -1.199 -0.585 -0.585 -1.199" size="0.003" rgba="0.25 0.85 1.0 0.7" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_f2" type="capsule" fromto="-0.585 -0.585 -1.199 -0.585  0.585 -1.199" size="0.003" rgba="0.25 0.85 1.0 0.7" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_f3" type="capsule" fromto="-0.585  0.585 -1.199  0.585  0.585 -1.199" size="0.003" rgba="0.25 0.85 1.0 0.7" group="5" contype="0" conaffinity="0"/>
+      <geom name="frustum_axis" type="capsule" fromto="0 0 0 0 0 -1.199" size="0.0015" rgba="0.25 0.85 1.0 0.35" group="5" contype="0" conaffinity="0"/>
+    </body>
+    <geom name="cam_cable" type="capsule" fromto="0.05 0.0 2.09 0.05 1.02 2.10" size="0.005" material="cable_mat" contype="0" conaffinity="0"/>
+    <!-- The learning camera (UNCHANGED pose/intrinsics): looks straight down; image 'up' = world +x (robot at image bottom) -->
+    <camera name="overhead" pos="0.05 0.0 2.00" quat="0.7071068 0 0 -0.7071068" fovy="52"/>
+
+    <!-- Viewport cameras -->
+    <camera name="workcell" pos="1.70 -1.60 1.80" xyaxes="0.6748 0.7380 0.0000 -0.1523 0.1392 0.9785" fovy="55"/>
+    <camera name="workcell_front" pos="2.4 0.0 1.6" xyaxes="0 1 0 -0.35 0 0.94" fovy="45"/>
+    <camera name="workcell_side" pos="-0.2 -2.6 1.7" xyaxes="1 0 0 0 0.32 0.95" fovy="45"/>
+
+    <!-- ================= Industrial set dressing ================= -->
+    <!-- Structural columns -->
+    <geom name="col0" type="box" pos="-3.2 -3.2 2.5" size="0.2 0.2 2.5" material="column_mat" contype="0" conaffinity="0"/>
+    <geom name="col1" type="box" pos="-3.2  3.2 2.5" size="0.2 0.2 2.5" material="column_mat" contype="0" conaffinity="0"/>
+    <geom name="col2" type="box" pos=" 3.2  3.2 2.5" size="0.2 0.2 2.5" material="column_mat" contype="0" conaffinity="0"/>
+    <geom name="col_stripe0" type="box" pos="-3.2 -3.2 0.6" size="0.205 0.205 0.3" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="col_stripe1" type="box" pos="-3.2  3.2 0.6" size="0.205 0.205 0.3" material="safety_yellow" contype="0" conaffinity="0"/>
+    <!-- Ceiling beams and light fixtures -->
+    <geom name="beam0" type="box" pos="0 -3.2 4.9" size="7 0.15 0.1" material="column_mat" contype="0" conaffinity="0"/>
+    <geom name="beam1" type="box" pos="0  3.2 4.9" size="7 0.15 0.1" material="column_mat" contype="0" conaffinity="0"/>
+    <geom name="fixture0" type="box" pos="0 -1.6 4.7" size="0.8 0.15 0.03" material="fixture_mat" contype="0" conaffinity="0"/>
+    <geom name="fixture1" type="box" pos="0  1.6 4.7" size="0.8 0.15 0.03" material="fixture_mat" contype="0" conaffinity="0"/>
+    <geom name="fixture2" type="box" pos="-2.5 0 4.7" size="0.8 0.15 0.03" material="fixture_mat" contype="0" conaffinity="0"/>
+    <!-- Warehouse shelving racks along the back wall -->
+    <geom name="rack0_u0" type="box" pos="-4.0 -2.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack0_u1" type="box" pos="-4.0  0.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack0_u2" type="box" pos="-3.2 -2.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack0_u3" type="box" pos="-3.2  0.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack0_s0" type="box" pos="-3.6 -1.0 0.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack0_s1" type="box" pos="-3.6 -1.0 1.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack0_s2" type="box" pos="-3.6 -1.0 2.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack0_box0" type="box" pos="-3.6 -1.7 0.75" size="0.35 0.4 0.28" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="rack0_box1" type="box" pos="-3.6 -0.4 0.70" size="0.3 0.35 0.23" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="rack0_box2" type="box" pos="-3.6 -1.2 1.75" size="0.35 0.45 0.28" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="rack0_bin0" type="box" pos="-3.6 0.0 1.62" size="0.3 0.2 0.15" material="bin_blue" contype="0" conaffinity="0"/>
+    <geom name="rack0_bin1" type="box" pos="-3.6 -0.6 2.62" size="0.3 0.2 0.15" material="bin_blue" contype="0" conaffinity="0"/>
+    <geom name="rack1_u0" type="box" pos="-4.0 1.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack1_u1" type="box" pos="-4.0 3.6 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack1_u2" type="box" pos="-3.2 1.2 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack1_u3" type="box" pos="-3.2 3.6 1.5" size="0.04 0.04 1.5" material="rack_orange" contype="0" conaffinity="0"/>
+    <geom name="rack1_s0" type="box" pos="-3.6 2.4 0.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack1_s1" type="box" pos="-3.6 2.4 1.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack1_s2" type="box" pos="-3.6 2.4 2.45" size="0.45 1.25 0.02" material="rack_blue" contype="0" conaffinity="0"/>
+    <geom name="rack1_box0" type="box" pos="-3.6 1.8 0.75" size="0.35 0.45 0.28" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="rack1_box1" type="box" pos="-3.6 3.0 1.72" size="0.35 0.45 0.25" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="rack1_box2" type="box" pos="-3.6 2.2 2.70" size="0.3 0.35 0.23" material="cardboard" contype="0" conaffinity="0"/>
+    <!-- Pallets with stacked boxes -->
+    <geom name="pallet0" type="box" pos="1.2 3.0 0.07" size="0.6 0.4 0.07" material="pallet_wood" contype="0" conaffinity="0"/>
+    <geom name="pallet0_box" type="box" pos="1.2 3.0 0.55" size="0.5 0.35 0.4" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="pallet1" type="box" pos="-1.5 3.2 0.07" size="0.6 0.4 0.07" material="pallet_wood" contype="0" conaffinity="0"/>
+    <geom name="pallet1_box0" type="box" pos="-1.7 3.2 0.40" size="0.3 0.3 0.25" material="cardboard" contype="0" conaffinity="0"/>
+    <geom name="pallet1_box1" type="box" pos="-1.3 3.3 0.35" size="0.2 0.25 0.2" material="cardboard" contype="0" conaffinity="0"/>
+    <!-- Parts trolley / second table in background -->
+    <geom name="trolley_top" type="box" pos="2.6 1.4 0.85" size="0.5 0.35 0.02" material="table_mat" contype="0" conaffinity="0"/>
+    <geom name="trolley_l0" type="box" pos="2.15 1.1 0.42" size="0.02 0.02 0.42" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="trolley_l1" type="box" pos="3.05 1.1 0.42" size="0.02 0.02 0.42" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="trolley_l2" type="box" pos="2.15 1.7 0.42" size="0.02 0.02 0.42" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="trolley_l3" type="box" pos="3.05 1.7 0.42" size="0.02 0.02 0.42" material="table_frame_mat" contype="0" conaffinity="0"/>
+    <geom name="trolley_bin" type="box" pos="2.6 1.4 0.95" size="0.25 0.18 0.08" material="bin_blue" contype="0" conaffinity="0"/>
+    <!-- Safety fence posts (partial perimeter, out of the way) -->
+    <geom name="fence_p0" type="box" pos="-1.7 -1.35 0.6" size="0.03 0.03 0.6" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="fence_p1" type="box" pos="-1.7  1.35 0.6" size="0.03 0.03 0.6" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="fence_r0" type="box" pos="-1.7 0 1.15" size="0.015 1.35 0.015" material="safety_yellow" contype="0" conaffinity="0"/>
+    <geom name="fence_r1" type="box" pos="-1.7 0 0.55" size="0.015 1.35 0.015" material="safety_yellow" contype="0" conaffinity="0"/>
+  </worldbody>
+
+  <keyframe>
+    <!-- home: gripper hovering ~0.25 m above the spawn zone, pointing down -->
+    <key name="home"
+         qpos="2.8706 -1.5639 2.0604 -2.0673 -1.5708 -1.8418 0 0  0.10 0.08 0.803 1 0 0 0  0.25 -0.08 0.808 1 0 0 0  -6.0 -6.0 0.05 1 0 0 0  -6.0 -5.65 0.05 1 0 0 0  -6.0 -5.30 0.05 1 0 0 0  -6.0 -4.95 0.05 1 0 0 0  -6.0 -4.60 0.05 1 0 0 0  -6.0 -4.25 0.05 1 0 0 0  -6.0 -3.90 0.05 1 0 0 0"
+         ctrl="2.8706 -1.5639 2.0604 -2.0673 -1.5708 -1.8418 0"/>
+  </keyframe>
+</mujoco>

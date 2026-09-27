@@ -1,0 +1,50 @@
+# Physical simulation settings (MuJoCo)
+model_path: simulation/mujoco/scene.xml
+robot:
+  name: UR10e                      # official MuJoCo Menagerie UR10e model
+  arm_joints: [shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]
+  arm_actuators: [shoulder_pan, shoulder_lift, elbow, wrist_1, wrist_2, wrist_3]
+  gripper_actuator: gripper
+  gripper_joint: left_finger_joint
+  gripper_stroke: 0.07             # per-finger travel [m]; 0 = open (140 mm aperture), 0.07 = closed
+  ee_site: pinch                   # tool-center-point site used by the controller and reward
+  home_qpos: [2.8706, -1.5639, 2.0604, -2.0673, -1.5708, -1.8418]
+  # Joint speed limits from the UR10e datasheet (rad/s): 120 deg/s base+shoulder, 180 deg/s others
+  joint_velocity_limits: [2.094, 2.094, 3.142, 3.142, 3.142, 3.142]
+  joint_limits_margin: 0.05        # keep IK targets this far inside the joint range [rad]
+control:
+  control_dt: 0.1                  # policy period [s] -> 10 Hz control
+  physics_dt: 0.001                # from the MJCF <option timestep> (1 ms since Update 7; 100 sub-steps per 10 Hz control step)
+  mode: cartesian_delta            # end-effector delta control with damped-least-squares IK
+  max_delta_pos: 0.05              # max |dx|,|dy|,|dz| per control step [m]
+  max_delta_rot: [0.0, 0.0, 0.35]  # max |dRx|,|dRy|,|dRz| per step [rad]; roll/pitch locked so the gripper points down
+  ik_iterations: 4
+  ik_damping: 0.01
+  ik_max_joint_step: 0.25          # safety clamp on IK joint step [rad]
+  workspace:                       # allowed TCP box [m] (world frame)
+    x: [-0.20, 0.55]
+    y: [-0.58, 0.58]
+    z: [0.811, 1.30]
+camera:
+  overhead:
+    name: overhead
+    width: 64
+    height: 64
+  viewport:
+    name: workcell
+    width: 1120                      # 14:9 - matches the middle column of the three-column dashboard (no side gaps)
+    height: 720
+    jpeg_quality: 80
+  preview:
+    width: 192
+    height: 192
+physics:
+  # Light viscous damping on the free joints of every catalog part (task objects, variants, extra parts). Without it the
+  # 12 mm bracket occasionally diverged (|qvel| > 1e4) when released into / resting against the 8 mm bin walls: 4 of 60
+  # clean policy episodes and up to 74 % of a live run once a part got wedged. With it: 0 of 60 (DEBUGGING.md part 3).
+  # Roughly: 0.5 N·s/m linear (~14 % of gravity at 1 m/s), 0.005 N·m·s angular.
+  object_damping:
+    linear: 0.5
+    angular: 0.005
+render:
+  backend: egl

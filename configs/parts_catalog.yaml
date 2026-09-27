@@ -1,0 +1,18 @@
+# Parts catalog for the scene builder (Phase 3). Every body listed here exists in simulation/mujoco/scene.xml as a
+# free body that is PARKED off-cell at `park` when not on the table (no model recompilation at demo time).
+#   role: variant   -> alternative geometry for one of the two policy-tracked task objects (slot = bracket | bolt)
+#   role: clutter   -> extra part that can share the table (occlusion / clutter); not tracked by the policy
+#   role: reject    -> the rejection-case part: a well-behaved policy must leave it alone (false-pick metric)
+# rest_height: body-origin height above the table when the part rests flat (nominal scale)
+park_origin: [-6.0, -6.0, 0.05]
+park_spacing: 0.35
+parts:
+  bracket:        {label: "L-bracket 120×60 (default)",  category: bracket,  role: variant, slot: bracket, rest_height: 0.007, color: "#a9a99d"}
+  bracket_flat:   {label: "Flat bracket 120×60×8",       category: bracket,  role: variant, slot: bracket, rest_height: 0.004, color: "#a9a99d"}
+  bracket_u:      {label: "U-bracket 100×50×30",         category: bracket,  role: variant, slot: bracket, rest_height: 0.003, color: "#a9a99d"}
+  bolt:           {label: "Hex bolt M20×100 (default)",  category: fastener, role: variant, slot: bolt,    rest_height: 0.014, color: "#4d4f54"}
+  bolt_socket:    {label: "Socket-head bolt M16×80",     category: fastener, role: variant, slot: bolt,    rest_height: 0.010, color: "#4d4f54"}
+  bolt_m12:       {label: "Hex bolt M12×60",             category: fastener, role: variant, slot: bolt,    rest_height: 0.007, color: "#4d4f54"}
+  bracket_extra:  {label: "Extra L-bracket (clutter)",   category: clutter,  role: clutter, rest_height: 0.006, color: "#a9a99d"}
+  bolt_extra:     {label: "Extra hex bolt (clutter)",    category: clutter,  role: clutter, rest_height: 0.011, color: "#4d4f54"}
+  reject_cap:     {label: "Red plastic cap (does NOT belong)", category: rejection, role: reject, rest_height: 0.012, color: "#d0312d"}

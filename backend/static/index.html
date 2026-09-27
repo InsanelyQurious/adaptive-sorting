@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Adaptive Sorting — skeleton</title>
+<style>body{background:#0b0d10;color:#cfd6df;font-family:monospace;margin:0;padding:12px}
+img{border:1px solid #333;max-width:100%}pre{font-size:11px;white-space:pre-wrap}button{margin:2px;background:#1a1f26;color:#cfd6df;border:1px solid #3a4250;padding:4px 8px;cursor:pointer}
+.row{display:flex;gap:12px}.col{flex:1}</style></head><body>
+<h3>ADAPTIVE SORTING — walking skeleton (fallback page; the React dashboard is served here when built)</h3>
+<div>
+<button onclick="post('/simulation/reset',{})">Reset</button>
+<button onclick="post('/simulation/randomize',{})">Randomize</button>
+<button onclick="post('/simulation/mode',{mode:'random'})">Random policy</button>
+<button onclick="post('/inference/start',{})">Run inference</button>
+<button onclick="post('/inference/stop',{})">Stop</button>
+<button onclick="post('/simulation/pause',{})">Pause</button>
+<button onclick="post('/simulation/resume',{})">Resume</button>
+<button onclick="post('/simulation/step',{steps:1})">Step</button>
+</div>
+<div class="row"><div class="col"><img id="view" width="960"></div>
+<div class="col"><img id="overhead" width="192"><pre id="state"></pre></div></div>
+<script>
+const ws=new WebSocket(`ws://${location.host}/ws/simulation`);
+ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type!=='frame')return;
+document.getElementById('view').src='data:image/jpeg;base64,'+m.frame;
+if(m.overhead)document.getElementById('overhead').src='data:image/jpeg;base64,'+m.overhead;
+const s=m.state;document.getElementById('state').textContent=JSON.stringify({mode:s.mode,step:s.step,episode:s.episode,reward:s.reward,ee:s.ee_position,grasped:s.grasped,target:s.target,action:s.action.values,objects:s.objects,stream_fps:s.inference.stream_fps},null,1);};
+async function post(u,b){const r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});console.log(await r.text());}
+</script></body></html>

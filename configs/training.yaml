@@ -1,0 +1,79 @@
+algorithm: PPO
+policy: MultiInputPolicy        # SB3: CNN on image + MLP on state
+device: auto                    # 'auto' -> cuda if available, else cpu
+seed: 42
+n_envs: 12
+total_timesteps: 3000000
+n_steps: 256                    # per env per rollout -> 3072 samples/update at 12 envs
+batch_size: 768
+n_epochs: 4
+learning_rate: 0.0003
+gamma: 0.99
+gae_lambda: 0.95
+clip_range: 0.2
+ent_coef: 0.003
+vf_coef: 0.5
+max_grad_norm: 0.5
+target_kl: 0.02                 # PPO early-stops an update's epochs when approx KL > 1.5 * target_kl (trust region on top of the clip)
+log_std_init: -1.0              # initial Gaussian action std ~0.37 (a BC-initialised policy does not need std 0.6 noise)
+# Learning-rate warm-up + evaluation-gated ramp (Incremental Update 2, fix #2): the optimiser runs at
+# learning_rate * scale; scale starts at initial_scale, and after each periodic evaluation it is multiplied by
+# up_factor if the eval score did not regress (score = success + 0.5*placement + 0.25*grasp, tolerance below)
+# or by down_factor if it did. Applies to every run (bootstrapped or not) when enabled.
+lr_gate:
+  enabled: true
+  initial_scale: 0.1
+  min_scale: 0.05
+  max_scale: 1.0
+  up_factor: 2.0
+  down_factor: 0.5
+  regress_tolerance: 0.05
+normalize_state: true           # VecNormalize on observation.state only (not on images)
+features_dim: 128               # CNN output features
+net_arch: [256, 256]
+checkpoint_every_steps: 25000
+eval_every_steps: 50000
+eval_episodes: 20                # 20 clean episodes per periodic eval (checkpoint selection uses these)
+log_dir: logs
+checkpoint_dir: checkpoints
+metrics_file: logs/metrics.jsonl
+status_file: logs/training_status.json
+control_file: logs/training_control.json
+dataset:
+  record_eval_episodes: true    # write LeRobot-format episodes during periodic eval
+  dir: datasets/eval_rollouts
+# Imitation bootstrap (Section 43). Off by default; enable from the UI ("Initialize from demonstrations")
+# or with --set bootstrap.init_from_demos=true. Two mechanisms, both documented in ASSUMPTIONS.md:
+#   1. BC pretraining: supervised regression of the PPO policy's own network (shared architecture, direct
+#      weight transfer) from (observation.images.overhead, observation.state) -> demonstrated action, plus
+#      value-head regression on the demos' discounted returns, BEFORE any PPO update.
+#   2. BC auxiliary steps during early PPO: after every PPO update a few supervised minibatch steps on the
+#      demo buffer, with a learning-rate scale that decays linearly to 0 over bc_aux_timesteps.
+bootstrap:
+  init_from_demos: false
+  demos_dir: datasets/demos
+  demo_types: [teleop_demo, assisted_demo, scripted_demo]   # which recorded episode types feed BC (assisted = human click-to-pick)
+  successful_only: true                      # skip demos whose outcome is not a full success
+  holdout_fraction: 0.1                      # fraction of demo frames held out to report BC generalisation
+  bc_epochs: 40
+  bc_batch_size: 256
+  bc_learning_rate: 0.0005
+  bc_value_regression: true                  # also fit the value head to demo returns (normalised)
+  # (a) in-loss BC anchor (training/policies/ppo_bc.py): loss += bc_loss_coef(t) * BC(demo minibatch) in EVERY PPO
+  #     minibatch; the coefficient decays linearly from bc_loss_coef to bc_loss_coef_floor over bc_loss_decay_timesteps
+  #     and never reaches 0, so the policy stays anchored to the demonstrations throughout fine-tuning.
+  bc_loss_coef: 1.0
+  bc_loss_coef_floor: 0.25
+  bc_loss_decay_timesteps: 1000000
+  bc_loss_type: mse                          # mse (policy mean vs demo action) | nll (-log pi(demo action))
+  # (b) legacy interleaved aux steps (kept for reference, off by default now that (a) exists)
+  bc_aux_coef: 0.0
+  bc_aux_timesteps: 150000
+  bc_aux_steps_per_iter: 4
+  # (c) keep the input space the BC solution was learned in: VecNormalize statistics are seeded from the demos and
+  #     then FROZEN (a moving normaliser silently re-maps every input the BC network learned)
+  freeze_obs_norm: true
+  # (d) match the training start-state distribution to the evaluation protocol: the initial-state curriculum was
+  #     designed for exploration from scratch; with demonstrations the from-home approach already exists, so the
+  #     curriculum probabilities are multiplied by this factor (1.0 = unchanged, 0 = all episodes start from home)
+  curriculum_scale: 0.3

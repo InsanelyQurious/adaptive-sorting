@@ -1,0 +1,90 @@
+env_id: VolvoSorting-v0
+task:
+  name: adaptive_vision_guided_component_sorting
+  objects:
+  - bracket
+  - bolt
+  bin_mapping:
+    bracket: bin_a
+    bolt: bin_b
+  bins:
+  - bin_a
+  - bin_b
+  mode: sequential
+  max_episode_steps: 200
+  settle_steps: 40
+  table_height: 0.8
+  drop_z_threshold: 0.7
+  lift_height: 0.06
+  grasp_hold_steps: 2
+  curriculum:
+    pregrasp_prob: 0.045
+    straddle_prob: 0.06
+    grasped_prob: 0.075
+    overbin_prob: 0.03
+    pregrasp_height:
+    - 0.03
+    - 0.12
+observation:
+  image_key: observation.images.overhead
+  state_key: observation.state
+  image_size:
+  - 64
+  - 64
+  include_image: true
+  state_noise_std: 0.0
+  joint_vel_scale: 0.2
+action:
+  dim: 7
+  gripper_index: 6
+  gripper_mode: binary
+reward:
+  approach_reward: 10.0
+  approach_scale: 8.0
+  approach_hover_height: 0.12
+  approach_hover_radius: 0.04
+  approach_align_fraction: 0.2
+  align_reward: 0.0
+  push_penalty: -0.2
+  push_speed_scale: 0.2
+  grasp_reward: 0.05
+  grasp_bonus_once: 10.0
+  lift_reward: 5.0
+  lift_shaping: 5.0
+  lift_cap: 0.15
+  transport_reward: 10.0
+  transport_scale: 4.0
+  placement_reward: 40.0
+  task_complete_bonus: 40.0
+  release_penalty: -2.0
+  collision_penalty: -1.0
+  wrong_bin_penalty: -20.0
+  drop_penalty: -10.0
+  control_effort_penalty: -0.01
+  time_penalty: -0.02
+  timeout_penalty: -5.0
+randomization:
+  level: 1.0
+  spawn_zone:
+    x:
+    - 0.02
+    - 0.34
+    y:
+    - -0.2
+    - 0.2
+    min_separation: 0.16
+  object_yaw:
+  - -3.1416
+  - 3.1416
+  bin_position_jitter:
+  - 0.04
+  - 0.04
+  object_scale:
+  - 0.92
+  - 1.08
+  friction:
+  - 0.7
+  - 1.2
+  state_noise_std: 0.005
+  image_noise_std: 2.0
+  light_jitter: true

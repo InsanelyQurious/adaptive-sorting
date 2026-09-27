@@ -1,0 +1,69 @@
+{
+ "name": "scripted_demo_20260926_132428_422649",
+ "episode_type": "scripted_demo",
+ "timestamp": "2026-09-26T13:24:28",
+ "frames": 77,
+ "duration_s": 7.7,
+ "wall_seconds": 0.4,
+ "aborted": false,
+ "outcome": {
+  "success": true,
+  "placed_count": 2,
+  "reward": 192.817,
+  "length": 77,
+  "grasp_success": true,
+  "dropped": false,
+  "wrong_bin": false,
+  "truncated": false
+ },
+ "seed": 3004,
+ "object_configuration": {
+  "object_poses": {
+   "bracket": {
+    "x": 0.103,
+    "y": 0.1346,
+    "yaw": 2.3737
+   },
+   "bolt": {
+    "x": 0.0326,
+    "y": -0.0387,
+    "yaw": 0.7388
+   }
+  },
+  "bin_offsets": {
+   "bin_a": [
+    0.0281,
+    0.0393
+   ],
+   "bin_b": [
+    -0.0027,
+    0.0077
+   ]
+  },
+  "object_scales": {
+   "bracket": 0.9611,
+   "bolt": 1.0603
+  },
+  "frictions": {
+   "bracket": 0.7837,
+   "bolt": 0.7908
+  },
+  "state_noise_std": 0.005,
+  "image_noise_std": 2.0,
+  "light": {
+   "dir": [
+    -0.283,
+    0.283,
+    -0.916
+   ],
+   "gain": 0.989
+  },
+  "level": 1.0
+ },
+ "robot": "UR10e",
+ "fps": 10,
+ "task": "Pick the bracket into Bin A and the bolt into Bin B.",
+ "controller": "scripted_ground_truth",
+ "noise_std": 0.03,
+ "source": "scripts/record_scripted_demos.py"
+}

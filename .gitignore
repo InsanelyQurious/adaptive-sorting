@@ -1,0 +1,43 @@
+# environments / build artefacts
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+MUJOCO_LOG.TXT
+
+# upstream MuJoCo Menagerie clone (the UR10e meshes + LICENSE used by the scene are copied into simulation/assets/)
+third_party/
+
+# training artefacts: only the shipped checkpoints are tracked (see checkpoints/ARCHIVES.md)
+checkpoints/*
+!checkpoints/ARCHIVES.md
+!checkpoints/latest.json
+!checkpoints/checkpoint_000400032/
+!checkpoints/checkpoint_000402432/
+checkpoints_smoke/
+checkpoints_diag_baseline/
+
+# datasets: the scripted demonstration set is tracked (25 MB, reproduces the BC bootstrap); rollouts are not
+datasets/eval_rollouts/
+datasets/live_recordings/
+datasets/demos_smoketest/
+
+# logs: keep the result JSONs, training telemetry and a few dashboard screenshots; drop frame dumps and run stdout
+logs/*.log
+logs/smoke/
+logs/eval_reels/
+logs/diagnosis/
+logs/diag_baseline/
+logs/*.jpg
+logs/*.html
+logs/*.png
+!logs/dashboard_cleanup.png
+!logs/dashboard_u6_layout_final.png
+!logs/dashboard_p3_scene.png
+!logs/export_summary_preview.png
+logs/training_control.json
+logs/training_overrides.json
+logs/*_training_status.json
+logs/run*_metrics.jsonl

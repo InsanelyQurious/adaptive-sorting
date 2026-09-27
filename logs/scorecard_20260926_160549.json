@@ -1,0 +1,403 @@
+{
+ "kind": "scorecard",
+ "i": 5,
+ "results": [
+  {
+   "status": "completed",
+   "checkpoint": "checkpoint_000400032",
+   "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+     3,
+     64,
+     64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+   },
+   "episodes_requested": 5,
+   "episodes_run": 5,
+   "successes": 5,
+   "success_rate": 1.0,
+   "grasp_rate": 1.0,
+   "placement_rate": 1.0,
+   "average_reward": 183.7476,
+   "average_length": 86.8,
+   "collisions_total": 0,
+   "episodes_with_collision": 0,
+   "control_effort_mean": 96.1164,
+   "control_effort_penalty_total": -4.805,
+   "collision_penalty_total": 0.0,
+   "parts_placed_total": 10,
+   "sim_seconds_total": 43.4,
+   "parts_per_minute": 13.82,
+   "false_picks": 0,
+   "drops": 0,
+   "wrong_bin": 0,
+   "randomization_level": null,
+   "label": "nominal",
+   "id": "scorecard_20260926_160549_20260926_160549_nominal",
+   "fixed_poses": {
+    "bracket": {
+     "x": 0.12,
+     "y": 0.1,
+     "yaw": 0.0
+    },
+    "bolt": {
+     "x": 0.26,
+     "y": -0.1,
+     "yaw": 0.0
+    }
+   },
+   "seed": 9000,
+   "duration_s": 4.9,
+   "finished_iso": "2026-09-26T16:05:54",
+   "item": {
+    "label": "nominal",
+    "layout": null,
+    "variants": null
+   },
+   "has_fixed_poses": true
+  },
+  {
+   "status": "completed",
+   "checkpoint": "checkpoint_000400032",
+   "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+     3,
+     64,
+     64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+   },
+   "episodes_requested": 5,
+   "episodes_run": 5,
+   "successes": 4,
+   "success_rate": 0.8,
+   "grasp_rate": 1.0,
+   "placement_rate": 0.8,
+   "average_reward": 153.15439999999998,
+   "average_length": 104.4,
+   "collisions_total": 0,
+   "episodes_with_collision": 0,
+   "control_effort_mean": 93.5228,
+   "control_effort_penalty_total": -4.675,
+   "collision_penalty_total": 0.0,
+   "parts_placed_total": 8,
+   "sim_seconds_total": 52.2,
+   "parts_per_minute": 9.2,
+   "false_picks": 0,
+   "drops": 0,
+   "wrong_bin": 0,
+   "randomization_level": null,
+   "label": "bracket_rot20",
+   "id": "scorecard_20260926_160549_20260926_160554_bracket_rot20",
+   "fixed_poses": {
+    "bracket": {
+     "x": 0.12,
+     "y": 0.1,
+     "yaw": 0.349
+    },
+    "bolt": {
+     "x": 0.26,
+     "y": -0.1,
+     "yaw": 0.0
+    }
+   },
+   "seed": 9000,
+   "duration_s": 5.9,
+   "finished_iso": "2026-09-26T16:06:00",
+   "item": {
+    "label": "bracket_rot20",
+    "layout": null,
+    "variants": null
+   },
+   "has_fixed_poses": true
+  },
+  {
+   "status": "completed",
+   "checkpoint": "checkpoint_000400032",
+   "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+     3,
+     64,
+     64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+   },
+   "episodes_requested": 5,
+   "episodes_run": 5,
+   "successes": 4,
+   "success_rate": 0.8,
+   "grasp_rate": 1.0,
+   "placement_rate": 0.8,
+   "average_reward": 148.82059999999998,
+   "average_length": 127.0,
+   "collisions_total": 0,
+   "episodes_with_collision": 0,
+   "control_effort_mean": 98.0912,
+   "control_effort_penalty_total": -4.905,
+   "collision_penalty_total": 0.0,
+   "parts_placed_total": 8,
+   "sim_seconds_total": 63.5,
+   "parts_per_minute": 7.56,
+   "false_picks": 0,
+   "drops": 0,
+   "wrong_bin": 0,
+   "randomization_level": null,
+   "label": "bracket_rot75",
+   "id": "scorecard_20260926_160549_20260926_160600_bracket_rot75",
+   "fixed_poses": {
+    "bracket": {
+     "x": 0.12,
+     "y": 0.1,
+     "yaw": 1.309
+    },
+    "bolt": {
+     "x": 0.26,
+     "y": -0.1,
+     "yaw": 0.0
+    }
+   },
+   "seed": 9000,
+   "duration_s": 7.2,
+   "finished_iso": "2026-09-26T16:06:07",
+   "item": {
+    "label": "bracket_rot75",
+    "layout": null,
+    "variants": null
+   },
+   "has_fixed_poses": true
+  },
+  {
+   "status": "completed",
+   "checkpoint": "checkpoint_000400032",
+   "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+     3,
+     64,
+     64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+   },
+   "episodes_requested": 5,
+   "episodes_run": 5,
+   "successes": 3,
+   "success_rate": 0.6,
+   "grasp_rate": 1.0,
+   "placement_rate": 1.0,
+   "average_reward": 142.56480000000002,
+   "average_length": 146.6,
+   "collisions_total": 0,
+   "episodes_with_collision": 0,
+   "control_effort_mean": 139.5374,
+   "control_effort_penalty_total": -6.966,
+   "collision_penalty_total": 0.0,
+   "parts_placed_total": 8,
+   "sim_seconds_total": 73.3,
+   "parts_per_minute": 6.55,
+   "false_picks": 0,
+   "drops": 0,
+   "wrong_bin": 0,
+   "randomization_level": null,
+   "label": "bolt_moved",
+   "id": "scorecard_20260926_160549_20260926_160607_bolt_moved",
+   "fixed_poses": {
+    "bracket": {
+     "x": 0.12,
+     "y": 0.1,
+     "yaw": 0.0
+    },
+    "bolt": {
+     "x": 0.06,
+     "y": -0.18,
+     "yaw": 1.2
+    }
+   },
+   "seed": 9000,
+   "duration_s": 8.0,
+   "finished_iso": "2026-09-26T16:06:15",
+   "item": {
+    "label": "bolt_moved",
+    "layout": null,
+    "variants": null
+   },
+   "has_fixed_poses": true
+  },
+  {
+   "status": "completed",
+   "checkpoint": "checkpoint_000400032",
+   "policy": {
+    "name": "ppo_bc_anchored_400k",
+    "checkpoint": "checkpoint_000400032",
+    "algorithm": "PPO",
+    "timesteps": 400032,
+    "episodes": 2453,
+    "device": "cpu",
+    "trained_on_device": "CPU",
+    "eval_success_rate": 0.7,
+    "eval_mean_reward": 144.34432435946945,
+    "eval_placement_rate": 0.9,
+    "eval_grasp_rate": 1.0,
+    "eval_at_timesteps": 400032,
+    "observation_type": "RGB (overhead 64x64) + proprioception/state",
+    "action_type": "end-effector Cartesian delta (dX dY dZ dRx dRy dRz) + gripper",
+    "action_dim": 7,
+    "state_dim": 44,
+    "image_shape": [
+     3,
+     64,
+     64
+    ],
+    "normalized_state": true,
+    "created_iso": "2026-09-26T15:11:17"
+   },
+   "episodes_requested": 5,
+   "episodes_run": 5,
+   "successes": 4,
+   "success_rate": 0.8,
+   "grasp_rate": 1.0,
+   "placement_rate": 0.8,
+   "average_reward": 147.2466,
+   "average_length": 124.6,
+   "collisions_total": 4,
+   "episodes_with_collision": 1,
+   "control_effort_mean": 133.5002,
+   "control_effort_penalty_total": -6.675,
+   "collision_penalty_total": -4.0,
+   "parts_placed_total": 8,
+   "sim_seconds_total": 62.3,
+   "parts_per_minute": 7.7,
+   "false_picks": 0,
+   "drops": 0,
+   "wrong_bin": 0,
+   "randomization_level": null,
+   "label": "both_moved",
+   "id": "scorecard_20260926_160549_20260926_160615_both_moved",
+   "fixed_poses": {
+    "bracket": {
+     "x": 0.3,
+     "y": -0.05,
+     "yaw": -0.9
+    },
+    "bolt": {
+     "x": 0.05,
+     "y": 0.17,
+     "yaw": 2.4
+    }
+   },
+   "seed": 9000,
+   "duration_s": 6.7,
+   "finished_iso": "2026-09-26T16:06:22",
+   "item": {
+    "label": "both_moved",
+    "layout": null,
+    "variants": null
+   },
+   "has_fixed_poses": true
+  }
+ ],
+ "episodes": 5,
+ "seed": 9000,
+ "randomization_level": null,
+ "started": 1790453149.6362839,
+ "id": "20260926_160549",
+ "restore_checkpoint": "checkpoint_000400032",
+ "status": "completed",
+ "finished": 1790453182.3320942,
+ "duration_s": 32.7,
+ "items": [
+  {
+   "label": "nominal",
+   "layout": null,
+   "variants": null
+  },
+  {
+   "label": "bracket_rot20",
+   "layout": null,
+   "variants": null
+  },
+  {
+   "label": "bracket_rot75",
+   "layout": null,
+   "variants": null
+  },
+  {
+   "label": "bolt_moved",
+   "layout": null,
+   "variants": null
+  },
+  {
+   "label": "both_moved",
+   "layout": null,
+   "variants": null
+  }
+ ],
+ "finished_iso": "2026-09-26T16:06:22"
+}

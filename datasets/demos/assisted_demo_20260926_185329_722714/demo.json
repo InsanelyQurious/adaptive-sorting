@@ -1,0 +1,71 @@
+{
+ "name": "assisted_demo_20260926_185329_722714",
+ "episode_type": "assisted_demo",
+ "initial_state": null,
+ "timestamp": "2026-09-26T18:53:33",
+ "frames": 39,
+ "duration_s": 3.9,
+ "wall_seconds": 3.9,
+ "aborted": false,
+ "outcome": {
+  "success": false,
+  "placed_count": 0,
+  "reward": 16.864,
+  "length": 39,
+  "grasp_success": true,
+  "dropped": false,
+  "wrong_bin": false,
+  "truncated": false
+ },
+ "seed": 1449378987,
+ "object_configuration": {
+  "object_poses": {
+   "bracket": {
+    "x": 0.1939,
+    "y": -0.1962,
+    "yaw": -1.2349
+   },
+   "bolt": {
+    "x": 0.1002,
+    "y": -0.0197,
+    "yaw": 2.4017
+   }
+  },
+  "bin_offsets": {
+   "bin_a": [
+    0.028,
+    0.0357
+   ],
+   "bin_b": [
+    -0.0013,
+    0.0352
+   ]
+  },
+  "object_scales": {
+   "bracket": 0.9254,
+   "bolt": 1.0583
+  },
+  "frictions": {
+   "bracket": 0.9743,
+   "bolt": 0.8762
+  },
+  "state_noise_std": 0.005,
+  "image_noise_std": 2.0,
+  "light": {
+   "dir": [
+    -0.507,
+    0.243,
+    -0.827
+   ],
+   "gain": 0.844
+  },
+  "level": 1.0,
+  "bins_fixed": false
+ },
+ "robot": "UR10e",
+ "fps": 10,
+ "task": "Pick the bracket into Bin A and the bolt into Bin B.",
+ "controller": "human_teleop",
+ "checkpoint": null,
+ "session": null
+}
