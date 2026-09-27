@@ -399,6 +399,26 @@ It is display-only: the policy observes the overhead camera and state only.
 
 ---
 
+## 19. Cloud deployment (Render)
+
+The whole app (MuJoCo backend + policy + dashboard on one origin) ships as a Docker image (`Dockerfile`) and a Render
+Blueprint (`render.yaml`). It is **CPU-only**: frames are rendered with OSMesa software OpenGL, so expect a lower
+viewport frame rate than locally; training is not intended to run in the cloud (inference, teleop, replay, evaluation,
+scorecards and the parts catalog all work). Memory at rest is ~1 GB, so the instance needs **≥ 2 GB RAM**
+(Render "standard"); 512 MB plans are killed at start-up.
+
+```bash
+# Dashboard -> New -> Blueprint -> select the GitHub repo (render.yaml is picked up), or with the API:
+curl -X POST https://api.render.com/v1/services -H "Authorization: Bearer $RENDER_API_KEY" -H 'content-type: application/json' \
+  -d '{"type":"web_service","name":"adaptive-sorting","ownerId":"<owner id>","repo":"https://github.com/<you>/adaptive-sorting","branch":"main",
+       "serviceDetails":{"runtime":"docker","plan":"standard","region":"frankfurt","healthCheckPath":"/health"}}'
+```
+
+Vercel and similar static/serverless hosts cannot run the backend (no persistent processes, WebSockets or OpenGL); they
+can only host a recorded playback of the dashboard (`scripts/capture_demo_clips.py` produces that bundle).
+
+---
+
 ## 13. Training monitoring & failure recovery
 
 - `logs/training.log` (human-readable), `logs/metrics.jsonl` (one JSON line per PPO update: SB3 `train/*`, `rollout/*`,
