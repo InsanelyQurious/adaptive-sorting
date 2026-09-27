@@ -1,0 +1,19 @@
+# Render Blueprint: one Docker web service = MuJoCo/PPO backend + built dashboard on the same origin.
+# CPU-only; viewport frames are rendered with OSMesa software OpenGL (expect ~5-10 fps). Training is not meant to
+# run in the cloud. Deploy: Render dashboard -> New -> Blueprint -> this repo, or via the API (scripts/deploy_render.py).
+services:
+  - type: web
+    name: adaptive-sorting
+    runtime: docker
+    plan: standard            # 2 GB RAM: torch (CPU) + mujoco + lerobot need > 1 GB; 512 MB plans will OOM
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: MUJOCO_GL
+        value: osmesa
+      - key: PYOPENGL_PLATFORM
+        value: osmesa
+      - key: DEMO_TITLE
+        value: ADAPTIVE SORTING

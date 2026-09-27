@@ -41,3 +41,6 @@ logs/training_control.json
 logs/training_overrides.json
 logs/*_training_status.json
 logs/run*_metrics.jsonl
+
+# recorded-demo bundle for static hosting (regenerate with scripts/capture_demo_clips.py)
+frontend/public/demo/
